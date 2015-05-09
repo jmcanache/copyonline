@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipping: 
+  shipping_address: MyText
+  status: MyString
+
+two:
+  shipping: 
+  shipping_address: MyText
+  status: MyString
