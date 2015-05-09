@@ -18,6 +18,9 @@ gem 'coffee-script-source', '~> 1.8.0'
 
 gem 'slim-rails'
 
+# Gema para gestion de permisos
+gem "cancan"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
