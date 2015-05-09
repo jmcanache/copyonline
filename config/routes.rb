@@ -1,4 +1,40 @@
 Rails.application.routes.draw do
+  get 'services/index'
+
+  get 'services/show'
+
+  get 'services/new'
+
+  get 'services/create'
+
+  get 'services/destroy'
+
+  get 'services/edit'
+
+  get 'orders/index'
+
+  get 'orders/show'
+
+  get 'orders/new'
+
+  get 'orders/create'
+
+  get 'orders/destroy'
+
+  get 'orders/edit'
+
+  get 'folders/index'
+
+  get 'folders/show'
+
+  get 'folders/new'
+
+  get 'folders/create'
+
+  get 'folders/destroy'
+
+  get 'folders/edit'
+
   resources :services
   resources :folders
   resources :orders
