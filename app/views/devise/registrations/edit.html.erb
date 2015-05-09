@@ -12,19 +12,6 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div>
-    <%= f.text_field :nombre, placeholder: "Nombre" %>
-  </div>
-  <div>
-    <%= f.text_field :apellido, placeholder: "Apellido" %>
-  </div>
-  <div>
-    <%= f.text_field :cedula, placeholder: "Cedula" %>
-  </div>
-  <div>
-    <%= f.text_field :telefono, placeholder: "Telefono" %>
-  </div>
-
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>

@@ -4,33 +4,21 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.text_field :nombre, placeholder: "Nombres" %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.text_field :apellido, placeholder: "Apellidos" %>
-  </div>
-
-  <div class="field">
-    <%= f.text_field :cedula, placeholder: "Cédula" %>
-  </div>
-
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
-  </div>
-
-  <div class="field">
-    <%= f.text_field :telefono, placeholder: "Teléfono celular" %>
-  </div>
-
-  <div class="field">
+    <%= f.label :password %>
     <% if @validatable %>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off", placeholder: "Contraseña" %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Repetir contraseña" %>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
