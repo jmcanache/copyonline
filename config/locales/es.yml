@@ -1,0 +1,67 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+es:
+  activerecord:
+    attributes:
+      user:
+        email: ""
+        nombre: ""
+        password: ""
+        apellido: ""
+        cedula: ""
+        telefono: ""
+    errors:
+      models:
+        user:
+          attributes:
+            nombre:
+              blank: "Introduzca un nombre"
+              invalid: "El nombre no puede contener numeros"
+              too_short: "El nombre debe contener como minimo 2 caracacteres"
+              too_long: "El nombre debe contener como maximo 20 caracacteres"
+
+            password:
+              blank: "La contraseña no puede estar vacia"
+              confirmation: "Las claves no coinciden"
+
+            password_confirmation:
+              confirmation: "Las claves no coinciden"
+
+            email: 
+              blank: "Introduzca un correo electronico"
+              taken: "Este email ya esta registrado"
+
+            apellido:
+              invalid: "El apellido no puede contener numeros"
+              too_short: "El apellido debe contener como minimo 2 caracacteres"
+              too_long: "El apellido debe contener como maximo 20 caracacteres"
+              blank: "Introduzca un apellido"
+
+            cedula:
+              blank: "Introduzca un numero de cedula"
+              not_a_number: "La cedula solo puede contener numeros"
+              taken: "Esta cedula ya fue registrada"
+              too_long: "La cedula puede contener como maximo 8 caracteres"
+
+            telefono: 
+              blank: "Introduzca un numero de telefono"
+              invalid: "Numero de telefono invalido, 04xxxxxxxxx"

@@ -8,9 +8,22 @@
 </head>
 <body>
 
-<%= yield %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+	<% if user_signed_in? %>
+		<li> <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete %> </li>
+		<li> <%= link_to "Editar cuenta", edit_user_registration_path %> </li>
+
+	<% else %>
+		<li> <%= link_to "Entrar", new_user_session_path %> </li>
+		<li> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
+		<li> <%= link_to "Editar cuenta", edit_user_registration_path %> </li>
+
+
+
+		<%= yield %>
+	<%end%>
 
 </body>
 </html>
