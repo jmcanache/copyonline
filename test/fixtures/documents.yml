@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attached_file: MyString
+  folder_id: 
+
+two:
+  attached_file: MyString
+  folder_id: 

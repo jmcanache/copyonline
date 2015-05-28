@@ -4,21 +4,31 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.text_field :nombre, autofocus: true, required: true, placeholder: "Nombre" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.text_field :apellido, autofocus: true, required: true, placeholder: "Apellido" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.number_field :cedula, autofocus: true, required: true, placeholder: "Cedula" %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, required: true, placeholder: "Email" %>
+  </div>
+
+  <div class="field">
+    <%= f.number_field :telefono, autofocus: true, required: true, placeholder: "Telefono celular" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "off", required: true, placeholder: "Contraseña" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: true, placeholder: "Confirme contraseña" %>
   </div>
 
   <div class="actions">

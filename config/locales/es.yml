@@ -22,6 +22,8 @@
 es:
   activerecord:
     attributes:
+      order:
+        shipping_address: ""
       user:
         email: ""
         nombre: ""
@@ -65,3 +67,12 @@ es:
             telefono: 
               blank: "Introduzca un numero de telefono"
               invalid: "Numero de telefono invalido, 04xxxxxxxxx"
+        order:
+          attributes:
+            shipping_address:
+              blank: "La direccion no puede estar vacia"
+              too_short: "La direccion debe conectener al menos 10 caracteres"
+        folder:
+          attributes:
+            description:
+              too_long: "La direccion no puede conetener mas de 300 caracteres"

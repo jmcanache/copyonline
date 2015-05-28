@@ -1,2 +1,14 @@
-h1 Services#index
-p Find me in app/views/services/index.html.slim
+table
+	tr
+		th Titulo
+		th Descripcion
+		th Precio 
+    - @services.each do |service|
+		tr
+			td == service.title
+			td == service.description
+			td == service.price
+			td == link_to "Editar", edit_service_path(service)
+		br
+
+

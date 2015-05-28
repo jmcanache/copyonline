@@ -1,2 +1,7 @@
-h1 Services#edit
-p Find me in app/views/services/edit.html.slim
+== form_for(@services) do |f|
+    p Introduzca nuevo precio para el servicio: #{@services.description}
+	== f.text_field :price, autofocus: true, placeholder: "Introduzc a nuevo precio" 
+	== f.submit "Aceptar" 
+
+
+	

@@ -1,2 +1,103 @@
-h1 Orders#new
-p Find me in app/views/orders/new.html.slim
+/ h2 Nueva orden
+/ ==form_tag(controller: "orders", action: "create", method: "post") do
+	
+/ 	div
+/ 		h3 Seleccione tipo de servicio:
+/ 		=radio_button_tag 'servicio', 'Copia'
+/ 		=label_tag 'copia', 'Copia'
+/ 		=radio_button_tag 'servicio', 'Impresion'
+/ 		=label_tag 'impresion', 'impresion'
+/ 		=radio_button_tag 'servicio', 'Reduccion'
+/ 		=label_tag 'reduccion', 'Reduccion'
+/ 		=radio_button_tag 'servicio', 'Ampliacion'
+/ 		=label_tag 'ampliacion', 'Ampliacion'
+/ 	div
+/ 		h3 Tipo de hojas
+/ 		=radio_button_tag 'hoja', 'Carta'
+/ 		=label_tag 'carta', 'Carta'
+/ 		=radio_button_tag 'hoja', 'Oficio'
+/ 		=label_tag 'oficio', 'Oficio'
+/ 		=radio_button_tag 'hoja', 'Extra_oficio'
+/ 		=label_tag 'extra_oficio', 'Extra oficio'
+/ 	div
+/ 		h3 Color o B/N
+/ 		=radio_button_tag 'color', 'Color'
+/ 		=label_tag 'color', 'Color'
+/ 		=radio_button_tag 'color', 'B/N'
+/ 		=label_tag 'b/n', 'B/N'
+
+/ 	div
+/ 		br
+/ 		=label_tag 'cantidad', 'Cantidad de hojas'
+/ 		= number_field_tag 'cantidad'
+/ 	div
+/ 		br
+/ 		= text_area_tag 'descripcion', nil, placeholder: 'Descripcion del pedido'
+/ 	div
+/ 		h3 Envio a domicilio?
+/ 		=radio_button_tag 'envio', '1', false, disabled: true
+/ 		=label_tag 'si', 'Si'
+/ 		=radio_button_tag 'envio', '0', false, disabled: true
+/ 		=label_tag 'no', 'No'
+/ 	div
+/ 		= text_area_tag 'direccion', nil, placeholder: 'Direccion de destino'
+
+/ 	= submit_tag "guardar"
+
+
+
+h2 Nueva orden
+=form_for(@orders) do |f| 
+
+	=if @orders.errors.any?
+	    =@orders.errors.full_messages.each do |msg| 
+	        p 
+	        	==msg 
+
+	=fields_for(@folders) do |fa| 
+	
+		div
+			h3 Seleccione tipo de servicio:
+			=f.radio_button 'servicio', 'Copia'
+			=f.label 'copia', 'Copia'
+			=f.radio_button 'servicio', 'Impresion'
+			=f.label 'impresion', 'impresion'
+			=f.radio_button 'servicio', 'Reduccion'
+			=f.label 'reduccion', 'Reduccion'
+			=f.radio_button 'servicio', 'Ampliacion'
+			=f.label 'ampliacion', 'Ampliacion'
+		div
+			h3 Tipo de hojas
+			=f.radio_button 'hoja', 'Carta'
+			=f.label 'carta', 'Carta'
+			=f.radio_button 'hoja', 'Oficio'
+			=f.label 'oficio', 'Oficio'
+			=f.radio_button 'hoja', 'Extra_oficio'
+			=f.label 'extra_oficio', 'Extra oficio'
+		div
+			h3 Color
+			=f.radio_button 'color', 'Color'
+			=f.label 'color', 'Color'
+			=f.radio_button 'color', 'blanco_negro'
+			=f.label 'blanco_negro', 'blanco_negro'
+		
+		div
+			br
+			=fa.label 'amount', 'Cantidad de hojas'
+			=fa.number_field 'amount'
+		div
+			br
+			= fa.text_area 'description', placeholder: 'Descripcion del pedido'
+		div
+			h3 Envio a domicilio?
+			=f.radio_button 'shipping', '1'
+			=f.label 'si', 'Si'
+			=f.radio_button 'shipping', '0'
+			=f.label 'no', 'No'
+		div
+			= f.text_area 'shipping_address', placeholder: 'Direccion de destino'
+
+	= f.submit "guardar"
+
+
+	

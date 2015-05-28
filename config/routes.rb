@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :documents
+  devise_for :users 
+
   get 'services/index'
 
   get 'services/show'
@@ -16,6 +19,8 @@ Rails.application.routes.draw do
   get 'orders/show'
 
   get 'orders/new'
+
+  post 'orders/create'
 
   get 'orders/create'
 
@@ -38,7 +43,6 @@ Rails.application.routes.draw do
   resources :services
   resources :folders
   resources :orders
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
