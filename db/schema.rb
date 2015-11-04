@@ -11,13 +11,79 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506032714) do
+
+ActiveRecord::Schema.define(version: 20150801214723) do
+
+  create_table "bancos", force: :cascade do |t|
+    t.string   "descripcion", limit: 255,               null: false
+    t.string   "codigo",      limit: 255, default: "0"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.integer  "folder_id",         limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "file_file_name",    limit: 255
+    t.string   "file_content_type", limit: 255
+    t.integer  "file_file_size",    limit: 4
+    t.datetime "file_updated_at"
+  end
+
+  add_index "documents", ["folder_id"], name: "index_documents_on_folder_id", using: :btree
+
+  create_table "folders", force: :cascade do |t|
+    t.float    "price",       limit: 24
+    t.integer  "order_id",    limit: 4
+    t.integer  "service_id",  limit: 4
+    t.integer  "amount",      limit: 4
+    t.text     "description", limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "folders", ["order_id"], name: "index_folders_on_order_id", using: :btree
+  add_index "folders", ["service_id"], name: "index_folders_on_service_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "status",     limit: 255, default: "1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "payment_id", limit: 4
+  end
+
+  add_index "orders", ["payment_id"], name: "index_orders_on_payment_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "transfer_number",  limit: 8,                 null: false
+    t.integer  "shipping",         limit: 1,     default: 0, null: false
+    t.text     "shipping_address", limit: 65535
+    t.integer  "process",          limit: 1,     default: 1, null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "Total_price",      limit: 4,                 null: false
+    t.integer  "banco_id",         limit: 4
+  end
+
+  add_index "payments", ["banco_id"], name: "index_payments_on_banco_id", using: :btree
+
+  create_table "services", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "ink",         limit: 255,   default: "N/A"
+    t.float    "price",       limit: 24
+    t.datetime "created_at",                default: '1900-01-01 00:00:00', null: false
+    t.datetime "updated_at",                default: '1900-01-01 00:00:00', null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "nombre",                 limit: 45,               null: false
     t.string   "apellido",               limit: 45,               null: false
     t.string   "telefono",               limit: 20,               null: false
-    t.string   "cedula",                 limit: 20,               null: false
+    t.integer  "cedula",                 limit: 4,                null: false
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false
@@ -30,9 +96,14 @@ ActiveRecord::Schema.define(version: 20150506032714) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.integer  "admin",                  limit: 4,   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+
+  add_foreign_key "documents", "folders"
+  add_foreign_key "orders", "payments"
+  add_foreign_key "payments", "bancos"
 end

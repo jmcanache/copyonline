@@ -1,0 +1,155 @@
+div class="row"
+	div class="col-lg-5 col-md-12 col-sm-8" id="underheader"
+	    article class="panel panel-info"
+
+	        = form_for @orders, url: {action: "create"}, :html => {:multipart => true} do |f| 
+	        	=if @orders.errors.any?
+		    		=@orders.errors.full_messages.each do |msg| 
+		      			p 
+		        			==msg 
+
+		        =fields_for(@folders) do |fa| 
+
+		        	header class="panel-heading" 
+		        		h4 style="text-align: center" Nueva orden 
+		          	section class="panel-body"
+	              		div class="col-lg-12 col-md-12 col-sm-12" 
+		              			h4 style="text-align: center" Seleccione el tipo de servicio 
+		                		div class="form-group" style="margin-left: 4px"
+		                			div class="row" id="features" style="font-size: 12px"
+		                				div class="col-sm-6"
+				                  			label class="btn-radio" id="servicio_copia"
+				                  				=f.radio_button 'servicio', 'Copia', :required => :true, checked: "checked"
+				                  				span Copia
+				                  			label class="btn-radio" id="servicio_impresion" style="margin-left: 30px"
+				                  				=f.radio_button 'servicio', 'Impresion', :required => :true
+				                  				span Impresion
+				                  		div class="col-sm-6"
+				                  			label class="btn-radio" id="servicio_reduccion"
+				                  				=f.radio_button 'servicio', 'Reduccion', :required => :true
+				                  				span Reduccion
+				                  			label class="btn-radio" id="servicio_ampliacion"
+				                  				=f.radio_button 'servicio', 'Ampliacion', :required => :true
+				                  				span Ampliacion
+	       				
+	       				div class="col-lg-12 col-md-12 col-sm-12" id="features" 
+		              			h4 style="text-align: center" Tipo de hojas 
+		                		div class="form-group"
+		                  			label class="btn-radio" id="hoja_carta"
+		                  				=f.radio_button 'hoja', 'Carta', :required => :true, checked: "checked"
+		                  				span Carta 
+		                  			label class="btn-radio" id="hoja_oficio"
+		                  				=f.radio_button 'hoja', 'Oficio', :required => :true
+		                  				span Oficio
+		                  			label class="btn-radio" id="hoja_extra_oficio"
+		                  				=f.radio_button 'hoja', 'Extra_oficio', :required => :true
+		                  				span Extra oficio
+
+	                  	div class="col-lg-12 col-md-12 col-sm-12"
+		                  		h4 style="text-align: center" Color
+		                  		div class="row" id="features"
+			   						div class="col-lg-6 col-sm-6"
+				   						label class="btn-check" id="test"
+				              				=f.check_box :blanco_negro
+				              				span Blanco y negro
+				              				div class="form-group"
+				              					=fa.number_field 'amount_blanco_negro', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 135px; height: 35px"
+			            			div class="col-lg-6 col-sm-6"
+				              			label class="btn-check"
+				              				=f.check_box :color, disabled: true
+				              				span Color
+				              				div class="form-group"
+				              					=fa.number_field 'amount_color', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 135px; height: 35px"		
+
+		            	div class="col-lg-12 col-md-12 col-sm-12"
+		            		=fa.text_area 'description', placeholder: 'Descripcion del pedido', maxlength: 1000, class: "form-control", style: "border: 1px solid #256EEA"
+
+	            		div class="col-lg-12 col-md-12 col-sm-12" style="margin-top:2%"
+	            			=fields_for @documents do |doc|
+								div
+									=doc.file_field :file, :multiple => true, :required => :true, :accept => "application/pdf" , class: "form-control"
+
+				div id="features"
+					= f.submit "Aceptar", class: "btn btn-primary", style: "width: 150px; margin-top: 8px; position: relative"
+	
+	div class="col-lg-7 col-sm-4" id="underheader"
+		div class="panel panel-warning"
+			div class="panel-heading" 
+				strong Guia para realizar una orden
+			div class="panel-body"
+				p 
+					strong Paso numero 1: 
+					p Se elige el tipo de servicio, ya sea copia, impresion, reduccion o ampliacion 
+					strong Paso numero 2: 
+					p Se elige el tipo de hoja donde se realizara el servicio. 
+					p La reduccion y ampliacion solo permiten seleccionar los tipo de hojas carta y oficio.
+					strong Paso numero 3: 
+					p Se elige el tipo de tinta que sera usado para realizar el servicio y la cantidad de hojas.
+					p Solo se puede escoger al mismo tiempo la tinta a color y B/N cuando se trata de un servicio de impresion
+					strong Paso numero 4: 
+					p Se escribe una descripcion acerca de lo que trata el pedido. Se debe especificar cuales seran las paginas que deben ir a color y cuales deben ir en blanco y negro.
+					strong Paso numero 5: 
+					p 
+						|Se seleccionan el o los archivos a los cuales se les realizara el servicio. Solo se aceptan formatos 
+						strong PDF.
+					strong Paso numero 6: 
+					p Se presiona el boton aceptar para terminar el proceso.
+
+					p
+						strong Nota:
+						|  Si se tiene alguna duda o debe dar una descripcion extra puede contactarnos a traves de....
+javascript:
+	document.getElementById('order_servicio_copia').onchange = function() {
+    	document.getElementById('order_color').disabled = true;
+    	document.getElementById('order_color').checked = false;
+    	document.getElementById('folder_amount_color').disabled = true;
+    	document.getElementById('order_hoja_extra_oficio').disabled = false;
+	};
+	document.getElementById('order_servicio_reduccion').onchange = function() {
+    	reduccion_ampliacion();
+	};
+	document.getElementById('order_servicio_ampliacion').onchange = function() {
+    	reduccion_ampliacion();
+	};
+	document.getElementById('order_servicio_impresion').onchange = function() {
+    	document.getElementById('order_color').disabled = false;
+    	document.getElementById('order_hoja_extra_oficio').disabled = false;
+	};
+
+	var reduccion_ampliacion = function(){
+		document.getElementById('order_color').disabled = true;
+    	document.getElementById('order_color').checked = false;
+    	document.getElementById('folder_amount_color').disabled = true;
+    	document.getElementById('order_hoja_extra_oficio').disabled = true;
+    	document.getElementById('order_hoja_extra_oficio').checked = false;
+	}; 
+
+	document.getElementById('order_color').onclick = function() {
+    	if(document.getElementById('order_color').checked === true)
+    	{
+    		document.getElementById('folder_amount_color').disabled = false;
+    	}
+    	else
+    	{
+    		document.getElementById('folder_amount_color').disabled = true;
+    	}
+	};	
+
+	document.getElementById('order_blanco_negro').onclick = function() {
+    	if(document.getElementById('order_blanco_negro').checked === true)
+    	{
+    		document.getElementById('folder_amount_blanco_negro').disabled = false;
+    	}
+    	else
+    	{
+    		document.getElementById('folder_amount_blanco_negro').disabled = true;
+    	}
+	};	
+
+	$(window).bind("pageshow", function() {
+    	$('form').get(0).reset(); 
+	});
+
+
+
+	

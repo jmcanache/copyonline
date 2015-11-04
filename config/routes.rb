@@ -1,10 +1,52 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users 
+
+  get 'profiles/edit'
+  patch 'profiles/update'
+
+  get 'services/index'
+  get 'services/show'
+  get 'services/new'
+  get 'services/create'
+  get 'services/destroy'
+  get 'services/edit'
+  post 'services/update'
+
+  get 'orders/prueba'
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/new'
+  get 'orders/create'
+  get 'orders/destroy'
+  get 'orders/edit'
+  get 'orders/ver_detalles'
+  get 'orders/eliminar_orden'
+  post 'orders/create'
+  post 'orders/procesar_order'
+  post 'orders/procesar_transferencia'
+  post 'orders/transferencia_pagada'
+
+  get 'folders/index'
+  get 'folders/show'
+  get 'folders/new'
+  get 'folders/create'
+  get 'folders/destroy'
+  get 'folders/edit'
+
+  get 'payments/procesar_transferencia'
+  get 'payments/ver_detalles'
+  get 'payments/orden_finalizada'
+
+  resources :services
+  resources :folders
+  resources :orders
+  resources :admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

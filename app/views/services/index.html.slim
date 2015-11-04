@@ -1,0 +1,16 @@
+div class="rwd" id="underheader"
+    table class="rwd_auto"
+        thead
+            tr
+				th Titulo
+				th Descripcion
+				th Tinta 
+				th Precio
+    	tbody
+    		-@services.each do |service|
+				tr
+					td== service.title
+					td== service.description
+					td== service.ink
+					td 
+						a href="#" id="editService#{service.id}" name="editService" data-type="number" data-pk="#{service.id}" data-url="/services/update/" data-title="Introduzca Precio" #{service.price}
