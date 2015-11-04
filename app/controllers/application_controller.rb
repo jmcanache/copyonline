@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
+  add_flash_types :warning
+
+  def required_admin
+    redirect_to '/' unless current_user.admin?
+  end
+
   protected
 
   def configure_devise_permitted_parameters
@@ -20,6 +26,5 @@ class ApplicationController < ActionController::Base
       }
     end
   end
-
 
 end

@@ -1,26 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Copyonline</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Copyonline</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
+    <%= csrf_meta_tags %> 
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="container" id="main" style="font-size: 13px"> 
+      
+        <div class="navbar navbar-fixed-top">
+          <div class="container">
+          	<button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Home</a>
 
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+           	<div class="nav-collapse collapse navbar-responsive-collapse">
+  		         	<% if user_signed_in? %>
+                  <ul class="nav navbar-nav pull-right">
+                    <li> <%= link_to "Editar cuenta", {:controller => :profiles, :action => :edit} %> </li>
+        						<li> <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete %> </li>
+                	</ul>
+                  <ul class="nav navbar-nav pull-left">
+        						<% if current_user.admin? %>
+        							<li> <%= link_to "Procesar ordenes", {:controller => :payments, :action => :procesar_transferencia, :process => 1} %> </li> 
+        							<li> <%= link_to "Ordenes procesadas", {:controller => :payments, :action => :procesar_transferencia, :process => 2} %> </li>
+        							<li> <%= link_to "Editar servicios", {:controller => :services, :action => :index} %> </li>
+                    <%else%>
+                      <li> <%= link_to "Crear nueva order", {:controller => :orders, :action => :new} %> </li>
+                      <li> <%= link_to "Mostrar ordenes", {:controller => :orders, :action => :show} %> </li>
+      						  <%end%>
+                  </ul>
+  					    <% else %>
+                  <ul class="nav navbar-nav pull-right">
+        						<li> <%= link_to "Entrar", new_user_session_path %> </li>
+        						<li> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
+                  </ul>
+  					    <%end%> 
+  			    </div>
+          </div><!-- end container -->
+        </div><!-- end navbar -->
+        <% if !params[:notice].blank? %>
+            <div class="alert alert-success fade in" id="underheader">
+              <strong>Exito!  <%= params[:notice]%></strong>
+            </div>
+        <%end%>
+        <% if !flash[:notice].blank? %>
+            <div class="alert alert-success fade in" id="underheader">
+              <strong><%= flash[:notice]%></strong>
+            </div>
+        <%end%>
 
-	<% if user_signed_in? %>
-		<li> <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete %> </li>
-		<li> <%= link_to "Editar cuenta", edit_user_registration_path %> </li>
+        <% if !params[:alert].blank? %>
+          <div class="alert alert-danger fade in" id="underheader">
+            <strong> Error!  <%= params[:alert] %> </strong>
+         </div>
+        <%end%>
+        <% if !flash[:alert].blank? %>
+          <div class="alert alert-danger fade in" id="underheader">
+            <strong> <%= flash[:alert] %> </strong>
+         </div>
+        <%end%>
 
-	<% else %>
-		<li> <%= link_to "Entrar", new_user_session_path %> </li>
-		<li> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
-		<li> <%= link_to "Editar cuenta", edit_user_registration_path %> </li>
-	<%end%>
-	<%= yield %>
 
-</body>
+        <% if !params[:warning].blank? %>
+          <div class="alert alert-warning" id="underheader">
+              <strong>Advertencia!  <%= params[:warning] %></strong>          
+          </div>
+        <%end%>
+        <%= yield %>
+      </div>
+    </div>
+    
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-2">
+            <h6>Copyright &copy; 2013 {name}</h6>
+          </div><!-- end col-sm-2 -->
+          
+          <div class="col-sm-4">
+            <h6>About Us</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div><!-- end col-sm-4 -->
+          
+          <div class="col-sm-2">
+            <h6>Navigation</h6>
+            <ul class="unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Links</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div><!-- end col-sm-2 -->
+          
+          <div class="col-sm-2">
+            <h6>Follow Us</h6>
+            <ul class="unstyled">
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Google Plus</a></li>
+            </ul>
+          </div><!-- end col-sm-2 -->
+          
+          <div class="col-sm-2">
+            <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Brad</h6>
+          </div><!-- end col-sm-2 -->
+        </div><!-- end row -->
+      </div><!-- end container -->
+    </footer>
+  </body>
 </html>

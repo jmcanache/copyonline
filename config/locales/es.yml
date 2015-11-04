@@ -44,6 +44,7 @@ es:
             password:
               blank: "La contraseña no puede estar vacia"
               confirmation: "Las claves no coinciden"
+              too_short: "La contraseña debe tener minimo 8 caracacteres"
 
             password_confirmation:
               confirmation: "Las claves no coinciden"
@@ -51,6 +52,7 @@ es:
             email: 
               blank: "Introduzca un correo electronico"
               taken: "Este email ya esta registrado"
+              invalid: "Email invalido"
 
             apellido:
               invalid: "El apellido no puede contener numeros"

@@ -34,6 +34,16 @@ gem 'devise'
 
 gem 'devise-i18n'
 
+gem 'paperclip', '~> 3.5.3'
+
+gem 'paperclip-dropbox', '~> 1.3.2'
+
+gem 'will_paginate', '~> 3.0'
+
+gem "font-awesome-rails"
+
+gem 'angularjs-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
