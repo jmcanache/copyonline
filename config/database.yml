@@ -42,10 +42,11 @@ test:
   <<: *global
   database: copy_test
 
-staging:
-  <<: *global
-  database: copy_staging
-
 production:
-  <<: *global
-  database: <%= ENV['DATABASE_MYSQL'] %>
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
