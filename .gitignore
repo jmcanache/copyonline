@@ -9,6 +9,8 @@
 
 # Ignore database config.
 
+/public/assets
+
 /config/database.yml
 
 # Ignore all logfiles and tempfiles.
