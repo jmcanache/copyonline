@@ -1,0 +1,51 @@
+# MySQL.  Versions 5.0+ are recommended.
+#
+# Install the MYSQL driver
+#   gem install mysql2
+#
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#
+# development:
+#   adapter: mysql2  # Rails 3.x uses the mysql2 adapter
+#   encoding: utf8
+#   database: copyonline_db_development
+#   pool: 5
+#   username: root
+#   password: abc123
+#   socket: /var/run/mysqld/mysqld.sock
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+
+global: &global
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: 'jparadasb'
+
+development:
+  <<: *global
+  database: copy_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *global
+  database: copy_test
+
+staging:
+  <<: *global
+  database: copy_staging
+
+production:
+  <<: *global
+  database: <%= ENV['DATABASE_MYSQL'] %>
