@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -20,7 +21,7 @@ gem 'slim-rails'
 
 # Gema para gestion de permisos
 gem "cancan"
-
+gem "rails_12factor"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
