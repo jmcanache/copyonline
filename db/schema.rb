@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801214723) do
+ActiveRecord::Schema.define(version: 20151120214500) do
 
   create_table "bancos", force: :cascade do |t|
     t.string   "descripcion", limit: 255,               null: false
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 20150801214723) do
   end
 
   add_index "payments", ["banco_id"], name: "index_payments_on_banco_id", using: :btree
+
+  create_table "seed_migration_data_migrations", force: :cascade do |t|
+    t.string   "version",     limit: 255
+    t.integer  "runtime",     limit: 4
+    t.datetime "migrated_on"
+  end
 
   create_table "services", force: :cascade do |t|
     t.string   "title",       limit: 255
