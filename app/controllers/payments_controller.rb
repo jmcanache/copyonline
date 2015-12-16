@@ -3,10 +3,16 @@ class PaymentsController < ApplicationController
   before_action :required_admin, only: [:procesar_transferencia, :ver_detalles, :orden_finalizada]
 
   def procesar_transferencia
-  	@payment = Payment.includes({orders: [{folders: :service}, {folders: :document}, :user]}, :banco).where(:process => params[:process]).paginate(page: params[:page], per_page: 1)
+    if params[:process] == "1"
+      @titulo = "Ordenes realizadas"
+    else
+      @titulo = "Ordenes finalizadas"
+    end
+
+  	@payment = Payment.includes({orders: [{folders: :service}, {folders: :document}, :user]}, :banco).where(:process => params[:process])
     if @payment.blank?
       if params[:process] == "2"
-       redirect_to :controller => :users, :action => :index, warning: "No tiene ninguna order procesada"
+       redirect_to :controller => :users, :action => :index, warning: "No tiene ninguna orden procesada"
       else
        redirect_to :controller => :users, :action => :index, warning: "No tiene ordenes por procesar"
       end

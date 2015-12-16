@@ -5,9 +5,20 @@ class OrdersController < ApplicationController
   def show
     session.delete(:envio)
     session.delete(:direccion)
-    @orders = Order.ordenesAbiertas(current_user.id)
+    @orders = Order.ordenes(current_user.id, 1)
+    @titulo = "Ordenes a ser pagadas"
     if @orders.blank?
-      return redirect_to :action => :new, warning: "No tiene ninguna order para procesar"
+      return redirect_to :action => :new, warning: "No tiene ninguna orden para procesar"
+    end
+  end
+
+  def show_pagadas
+    session.delete(:envio)
+    session.delete(:direccion)
+    @orders = Order.ordenes(current_user.id, 2)
+    @titulo = "Ordenes pagadas"
+    if @orders.blank?
+      return redirect_to :action => :show, warning: "No tiene ninguna pagada"
     end
   end
 
@@ -16,6 +27,7 @@ class OrdersController < ApplicationController
     @documents = Document.new
     @orders = Order.new
     session.delete(:order_id)
+    @titulo = "Crear nueva orden"
   end
 
 
@@ -39,7 +51,7 @@ class OrdersController < ApplicationController
     end
 
     if guardar 
-      return redirect_to :action => :new, notice:("Orden procesada correctamente. Lo invitamos dirigirse a la seccion de 'Mostrar ordenes' para realizar sus pagos")
+      return redirect_to :action => :new, notice: ("Orden procesada correctamente. Lo invitamos dirigirse a la seccion de Mostrar ordenes para realizar sus pagos")
     else
       return redirect_to :action => :new, alert:("Ocurrio un problema en su orden, intente otra vez")
     end
@@ -47,6 +59,7 @@ class OrdersController < ApplicationController
 
   def procesar_order
     aux = params.count
+    @titulo = "Procesar ordenes"
     if(aux == 7)
       return redirect_to :action => :show,  warning: "Intente de nuevo"
     end
@@ -84,7 +97,7 @@ class OrdersController < ApplicationController
       end
 
       if todo_ok
-        redirect_to :controller => :orders, :action => :show, alert:('Pago realizado')
+        redirect_to :controller => :orders, :action => :show, notice:('Pago realizado')
       else
         redirect_to :controller => :orders, :action => :show, alert:('Ocurrio un problema en el pago, intente de nuevo')
         raise ActiveRecord::Rollback, "No guardo nada"
@@ -103,9 +116,9 @@ class OrdersController < ApplicationController
 
   def eliminar_orden
     if(Order.find(params[:order_id]).destroy)
-      redirect_to :controller => :orders, :action => :show, notice:('Orden eliminada exitisamente')
+      redirect_to :controller => :orders, :action => :show, notice:('Orden eliminada')
     else
-      redirect_to :controller => :orders, :action => :show, alert:('Ocurrio un problemas al borrar la orden')
+      redirect_to :controller => :orders, :action => :show, alert:('Ocurrio un problemas al intentar eliminar la orden')
     end
   end
 
@@ -120,7 +133,6 @@ class OrdersController < ApplicationController
           session[:order_id] = @orders.id
         else
           todo_ok = false
-          logger.debug('Error en order')
           break
         end
       end
@@ -131,12 +143,10 @@ class OrdersController < ApplicationController
           @document = Document.new(:file => doc, :folder_id => @folders.id)
           if !@document.save 
             todo_ok = false
-            logger.debug('Error en document')
           end
         end
       else
         todo_ok = false
-        logger.debug('Error en folder')
       end 
       if todo_ok == false
         raise ActiveRecord::Rollback, "No guardo nada"

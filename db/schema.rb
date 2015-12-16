@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20151120214500) do
   create_table "bancos", force: :cascade do |t|
     t.string   "descripcion", limit: 255,               null: false
     t.string   "codigo",      limit: 255, default: "0"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "documents", force: :cascade do |t|
@@ -34,22 +34,22 @@ ActiveRecord::Schema.define(version: 20151120214500) do
 
   create_table "folders", force: :cascade do |t|
     t.float    "price",       limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "order_id",    limit: 4
     t.integer  "service_id",  limit: 4
     t.integer  "amount",      limit: 4
     t.text     "description", limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "folders", ["order_id"], name: "index_folders_on_order_id", using: :btree
   add_index "folders", ["service_id"], name: "index_folders_on_service_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
     t.string   "status",     limit: 255, default: "1"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "user_id",    limit: 4
     t.integer  "payment_id", limit: 4
   end
 
@@ -78,17 +78,17 @@ ActiveRecord::Schema.define(version: 20151120214500) do
   create_table "services", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
-    t.string   "ink",         limit: 255,   default: "N/A"
     t.float    "price",       limit: 24
-    t.datetime "created_at",                default: '1900-01-01 00:00:00', null: false
-    t.datetime "updated_at",                default: '1900-01-01 00:00:00', null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "ink",         limit: 255
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "nombre",                 limit: 45,               null: false
-    t.string   "apellido",               limit: 45,               null: false
-    t.string   "telefono",               limit: 20,               null: false
-    t.integer  "cedula",                 limit: 4,                null: false
+    t.string   "nombre",                 limit: 255
+    t.string   "apellido",               limit: 255
+    t.string   "telefono",               limit: 255
+    t.integer  "cedula",                 limit: 4
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false
@@ -109,5 +109,6 @@ ActiveRecord::Schema.define(version: 20151120214500) do
 
   add_foreign_key "documents", "folders"
   add_foreign_key "orders", "payments"
+  add_foreign_key "orders", "users"
   add_foreign_key "payments", "bancos"
 end

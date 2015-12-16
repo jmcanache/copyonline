@@ -1,0 +1,47 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <% if !resource.errors.empty? %>
+    <div class="container">
+      <div class="alert alert-warning" id="underheader"> 
+        <%= devise_error_messages! %>
+      </div>
+    </div>
+  <%end%>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3  col-md-offset-4 col-md-4">
+          <div class="basic-login">
+            <form role="form" role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+                  <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
+                  <%= f.password_field :password, autocomplete: "off", placeholder: "Contraseña", class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <%= link_to "Olvidaste la contraseña?", new_password_path(resource_name),  class: "forgot-password" %>
+                <% end -%>
+                <%= f.submit "Entrar", class: "btn pull-right" %>
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-12 social-login">
+          <div class="clearfix"></div>
+          <div class="not-member">
+            <p>Aun no es miembro? <%= link_to "Registrate aquí", new_user_registration_path %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>
+

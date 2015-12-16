@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 col-md-offset-1 col-sm-6">
+			<h3>Su monto total a transferir es de: <span style="color: blue"><u><b> <%= @precio %></b></u></span></h3>
+			<%= form_tag( {controller: "orders", action: "transferencia_pagada"}, {class: "form-horizontal"}) do %>
+				<p>Luego de realizar el pago en la banca electrónica de su preferencia complete los siguientes campos:</p>
+				<div class="form-group">
+				    <label for="transferencia" class="col-sm-5 control-label">Número de transacción</label>
+				    <div class="col-sm-7">
+				    	<%= number_field_tag 'transfer_number', '', :required => :true, max: 8223372036854775807, class: "form-control" %>
+				    </div>
+				</div>
+				<input type="hidden" id="precio" name="precio" value="<%=@precio%>">
+			  	<div class="form-group">
+			    	<label for="banco" class="col-sm-5 control-label">Seleccione el banco</label>
+			    	<div class="col-sm-7">
+			    		<%= select_tag "banco", options_from_collection_for_select(@bancos, "id", "descripcion"), class: "form-control" %>
+			    	</div>
+			  	</div>
+				<div class="form-group">
+				    <div class="col-sm-12 text-right">
+				     	<%= submit_tag "Finalizar", data: { confirm: 'Estas seguro de finalizar?' }, class: "btn" %>
+				    </div>
+				</div>
+			<% end %>
+		</div>
+
+	  	<div class="col-md-4 col-md-offset-1 col-sm-6 font-size-banco">
+			<div class="panel panel-primary">
+			  	<div class="panel-body">
+			  		<%= image_tag("copy_banco_venezuela.png", class: "img-responsive" )%>
+				    <p><label>Cuenta:</label> 1345346538452346</p>
+				    <p><label>Tipo de cuenta:</label> Corriente</p>
+				    <p><label>A nombre de:</label> CopyOnline21</p>
+				    <p><label>Email:</label> copyonline21@gmail.com</p>
+				    <p><label>Rif:</label> 124525123453</p>
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>

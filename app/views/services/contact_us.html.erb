@@ -1,0 +1,58 @@
+<div class="section">
+	<div class="container">
+    	<div class="row">
+    		<div class="col-sm-7">
+    			<!-- Map -->
+    			<div id="contact-us-map">
+
+    			</div>
+    			<!-- End Map -->
+    			<!-- Contact Info -->
+    			<p class="contact-us-details">
+    				<b>Dirección:</b> 123 Fake Street, LN1 2ST, London, United Kingdom<br/>
+    				<b>Telefono:</b> +44 123 654321<br/>
+    				<b>Email:</b> <a href="copyOnline@gmail.com">copyOnline@gmail.com</a>
+    			</p>
+    			<!-- End Contact Info -->
+    		</div>
+    		<div class="col-sm-5">
+    			<!-- Contact Form -->
+    			<h3>Envienos un mensaje</h3>
+    			<div class="contact-form-wrapper">
+    				<%= form_tag({controller: "services", action: "send_email"}, method: "post", class: "form-horizontal") do %>
+        				<div class="form-group">
+        				 	<label for="name" class="col-sm-3 control-label"><b>Nombre</b></label>
+        				 	<div class="col-sm-9">
+        				 		<%= text_field_tag 'name', nil, class: "form-control" %> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="col-sm-3 control-label"><b>Email</b></label>
+							<div class="col-sm-9">
+								<%= email_field_tag 'email', nil, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="asunto" class="col-sm-3 control-label"><b>Tópico</b></label>
+							<div class="col-sm-9">
+								<%= select_tag "asunto", options_for_select([ "General", "Servicios", "Pedidos" ], "General"), class: "form-control" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="comment" class="col-sm-3 control-label"><b>Mensaje</b></label>
+							<div class="col-sm-9">
+								<%= text_area_tag 'comment', nil, class: 'form-control', rows: "5" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<button type="submit" class="btn pull-right">Enviar</button>
+							</div>
+						</div>
+					<% end %>
+        		</div>
+        		<!-- End Contact Info -->
+    		</div>
+    	</div>
+	</div>
+</div>

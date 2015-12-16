@@ -1,0 +1,56 @@
+<% if @usuario.errors.any? %> 
+	<div class="container">
+		<div class="alert alert-warning">
+			<% @usuario.errors.full_messages.each do |msg| %>
+				<p> <%= msg %> </p>
+			<% end %>
+		</div>	 
+	</div>
+<% end %>
+
+<div class="section">
+    <div class="container">
+      	<div class="row">
+	        <div class="col-sm-6 col-sm-offset-3  col-md-offset-4 col-md-4">
+	          	<div class="basic-login">
+					<%= form_for @usuario, url: {action: "update"} do |f| %>
+						<div class="form-group">
+	                		<div class="input-group">
+		                  		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>
+		                  		<%= f.text_field :nombre, placeholder: "Nombre", value: @usuario.nombre, required: true, class: "form-control" %>
+		                	</div>
+		              	</div>
+		              	<div class="form-group">
+	                		<div class="input-group">
+		                  		<div class="input-group-addon"><i class="fa fa-user-plus fa-fw"></i></div>
+		                  		<%= f.text_field :apellido, placeholder: "Apellido", value: @usuario.apellido, required: true, class: "form-control" %>
+		                	</div>
+		              	</div>
+		              	<div class="form-group">
+	                		<div class="input-group">
+		                  		<div class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></div>
+		                  		<%= f.email_field :email, placeholder: "Correo", value: @usuario.email, required: true, class: "form-control" %>
+		                	</div>
+		              	</div>
+		              	<div class="form-group">
+	                		<div class="input-group">
+		                  		<div class="input-group-addon"><i class="fa fa-sort-numeric-asc fa-fw"></i></div>
+		                  		<%= f.number_field :cedula, placeholder: "Cédula", value: @usuario.cedula, required: true, class: "form-control" %>
+		                	</div>
+		              	</div>
+		              	<div class="form-group">
+	                		<div class="input-group">
+		                  		<div class="input-group-addon"><i class="fa fa-mobile fa-fw"></i></div>
+		                  		<%= f.number_field :telefono, placeholder: "telefono", value: @usuario.telefono, required: true, class: "form-control" %>
+		                	</div>
+		              	</div>
+		              	<div class="form-group">
+			                <%= f.submit "Aceptar", class: "btn pull-right" %>
+			                <div class="clearfix"></div>
+			            </div>
+					<% end %>
+	          	</div>
+	        </div>
+      	</div>
+    </div>
+</div>

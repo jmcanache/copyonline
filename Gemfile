@@ -19,12 +19,16 @@ gem 'coffee-script-source', '~> 1.8.0'
 
 gem 'slim-rails'
 
+gem 'jquery-rails'
+
+gem 'jquery-turbolinks'
+
 # Gema para gestion de permisos
 gem "cancan"
 gem "rails_12factor"
 gem 'seed_migration'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+#gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,6 +40,8 @@ gem 'devise'
 
 gem 'devise-i18n'
 
+gem 'rails-i18n', '~> 4.0', '>= 4.0.7'
+
 gem 'paperclip', '~> 3.5.3'
 
 gem 'paperclip-dropbox', '~> 1.3.2'
@@ -44,7 +50,7 @@ gem 'will_paginate', '~> 3.0'
 
 gem "font-awesome-rails"
 
-gem 'angularjs-rails'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,80 @@
+<div class="section">
+	<div class="container">
+		<div class="row table-background">
+			<table 
+				id="table"
+				class="table table-hover" 
+				data-toggle="table" 
+          	 	data-pagination="true"
+          	 	data-page-list="[5, 10, 20, 50, 100, 200]"
+          	 	data-locale="es-ES"
+				data-use-row-attr-func="true"
+       			data-reorderable-rows="true"
+       			data-pagination-v-align="top"
+       			data-page-size="5"
+           	>
+			 	<thead>
+			 		<tr>
+			 			<th data-field="cliente" data-halign="center" data-sortable="true">Cliente</th>
+			 			<th data-field="descripcion" data-sortable="true" data-align="center">Descripción</th>
+			 			<th data-field="envio" data-sortable="true" data-align="center">Envio</th>
+			 			<th data-field="direccion" data-sortable="true">Dirección</th>
+			 			<th data-field="transferencia" data-sortable="true" data-align="center">Numero de transferencia</th>
+			 			<th data-field="banco" data-sortable="true" data-align="center">Banco</th>
+			 			<th data-field="total" data-sortable="true" data-align="center">Total(Bs.F)</th>
+			 			<% if(@process == "1") %>
+			 				<th data-field="finalizar" data-sortable="true" data-align="center">Finalizar</th>
+			 			<% end %>
+			 		</tr>
+			 	</thead>
+			 	<tbody>
+			 		<% @payment.each do |payment| %>
+			 			<tr>
+			 				<td>
+			 					<p><%= payment.orders[0].user[:nombre] %>  <%= payment.orders[0].user[:apellido] %></p>
+			 					<p><%= payment.orders[0].user[:telefono] %></p>
+			 					<p><%= payment.orders[0].user[:email] %></p>
+			 				</td>
+			 				<td>
+			 					<ul class="padding-left-10">
+			 						<% payment.orders.each do |order| %>
+			 							<li> <%= link_to "Ver detalles", {:controller => "payments", :action => "ver_detalles", :order_id => order[:id]}, class: "detalles", remote: true %> </li>
+			 						<% end %>
+			 					</ul>
+			 				</td>
+			 				<td>
+			 					<% if(payment[:shipping] == 1) %>
+									<p> Si </p>
+								<% else %>
+									<p> No </p>
+								<% end %>
+			 				</td>
+			 				<td>
+			 					<% if(payment[:shipping_address].blank?) %>
+									<p> Sin direccion </p>
+								<% else %>
+									<p> <%= payment[:shipping_address] %> </p>
+								<% end %>
+			 				</td>
+			 				<td>
+			 					<%= payment[:transfer_number] %>
+			 				</td>
+			 				<td>
+			 					<%= payment.banco[:descripcion] %>
+			 				</td>
+			 				<td>
+			 					<%= payment[:Total_price] %>
+			 				</td>
+			 				
+			 				<% if(@process == "1") %>
+			 					<td><%= link_to '<i class="fa fa-check-circle fa-2x detalles"></i>'.html_safe, {controller: :payments, action: :orden_finalizada, :payment_id => payment[:id]} %></td>
+			 				<% end %>
+			 			</tr>
+			 		<% end %>
+			 	</tbody>	 
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= render 'partials/dialog' %>

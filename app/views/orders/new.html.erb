@@ -1,0 +1,171 @@
+<style type="text/css">
+	@media (max-width: 385px) {
+	  .col-xs-4 {
+	    width: 100%;
+	  }
+	}
+	@media (min-width: 386px) and (max-width: 550px) {
+	  .col-xs-4 {
+	    width: 50%;
+	  }
+	  .col-custom{
+	  	width: 100% !important;
+	  }
+	}
+	label {
+	  display: block;
+	  position: relative;
+	  padding: 0.5rem 1rem;
+	  line-height: 28px;
+	  font-weight: normal;
+	  cursor: pointer;
+	  font-size: 1em !important;
+	  -webkit-tap-highlight-color: transparent;
+	}
+
+	label:last-of-type { margin-right: 1rem; }
+
+	label i {
+	  display: inline-block;
+	  height: 25px;
+	  position: relative;
+	  top: 3px;
+	  font-style: normal;
+	  color: #ccc;
+	}
+
+	label span {
+	  display: inline-block;
+	  margin-left: 5px;
+	  line-height: 25px;
+	  color: gray;
+	}
+</style>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 col-sm-12" style="padding-bottom: 4%">
+				<div class="basic-login">
+
+					<%= form_for @orders, url: {action: "create"}, :html => {:multipart => true} do |f| %>
+						<% if @orders.errors.any? %>
+							<%= @orders.errors.full_messages.each do |msg| %>
+					  			<p><%= msg %></p>
+					  		<% end %>
+					  	<% end %>
+						
+						<%= fields_for(@folders) do |fa| %>
+							<form role="form" role="form">
+								<div class="row">
+									<div class="col-sm-4 col-xs-4">
+										<div class="form-group">
+											<strong>Seleccione un servicio</strong>
+											<label>
+												<%= f.radio_button 'servicio', 'Impresion', :required => :true, checked: "checked" %> <i></i> <span>Impresión</span>
+											</label>
+											<label>
+												<%= f.radio_button 'servicio', 'Copia', :required => :true %><i></i> <span>Copia</span>
+											</label>
+											<label>
+												<%= f.radio_button 'servicio', 'Reduccion', :required => :true %> <i></i> <span>Reducción</span>
+											</label>
+											<label>
+												<%= f.radio_button 'servicio', 'Ampliacion', :required => :true %> <i></i> <span>Ampliación</span>
+											</label>
+										</div>
+									</div>
+
+									<div class="col-sm-4 col-xs-4">
+										<div class="form-group">
+											<strong>Tipo de hoja</strong>
+											<label>
+												<%= f.radio_button 'hoja', 'Carta', :required => :true, checked: "checked" %> <i></i> <span>Carta</span>
+											</label>
+											<label>
+												<%= f.radio_button 'hoja', 'Oficio', :required => :true %> <i></i> <span>Oficio</span>
+											</label>
+											<label>
+												<%= f.radio_button 'hoja', 'Extra_oficio', :required => :true %> <i></i> <span>Extra-oficio</span>
+											</label>
+										</div>
+									</div>
+
+									<div class="col-sm-4 col-xs-4 col-custom">
+										<div class="form-group">
+											<strong>Tipo de color</strong>
+											<label>
+												<%= f.check_box :blanco_negro %> <i></i> <span>B/N</span>
+												<%= fa.number_field 'amount_blanco_negro', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 125px;" %>
+											</label>
+											<label>
+												<%= f.check_box :color %> <i></i> <span>Color</span>
+											  	<%= fa.number_field 'amount_color', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 120px;" %>
+											</label>
+										</div>
+									</div>
+
+									<div class="col-xs-12">
+										<div class="form-group">
+											<strong>Descripcion</strong>
+											<%= fa.text_area 'description', placeholder: 'Descripción del pedido', maxlength: 1000, class: "form-control", rows: 4 %>
+										</div>
+									</div>
+
+									<div class="col-xs-12">
+										<div class="form-group">
+								            <strong>Seleccione 1 o multiples archivos</strong>
+								            <i class="fa fa-question-circle blue fa-lg" data-toggle="popover" title="Selección de archivos" data-content="Para seleccionar múltiples archivos presione la tecla 'Ctrl' y haga click izquierdo en cada uno de los archivos."></i>
+
+								            <div class="input-group">
+								                <span class="input-group-btn">
+								                    <span class="btn btn-primary btn-file">
+								                        Browse&hellip; 
+								                        <%= fields_for @documents do |doc| %>
+															<%= doc.file_field :file, :multiple => true, :required => :true, :accept => "application/pdf" %>
+														<% end %>
+								                    </span>
+								                </span>
+								                <input type="text" class="form-control" readonly>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+
+								<div class="form-group text-center">
+									<%= f.submit "Aceptar", class: "btn btn-primary btn-lg", id: "submitOrder", style: "width: 50%;" %>
+									<div class="clearfix"></div>
+								</div>
+							</form>
+						<% end %>
+					<% end %> 
+				</div>
+			</div>
+
+			<div class="col-md-5 col-sm-12">
+				<div class="panel panel-success">
+			      	<div class="panel-heading">
+			        	<strong>Guía para realizar una orden</strong>
+			      	</div>
+			      	<div class="panel-body auto-height">
+			        	<p><strong>Paso numero 1: </strong></p>
+			        	<p>Se elige el tipo de servicio, ya sea copia, impresión, reducción o ampliación</p>
+			          	<strong>Paso numero 2: </strong>
+			          	<p>Se elige el tipo de hoja donde se realizara el servicio. </p>
+			          	<p>La reducción y ampliación solo permiten seleccionar los tipo de hojas carta y oficio.</p>
+			          	<strong>Paso numero 3: </strong>
+			          	<p>Se elige el tipo de tinta que sera usado para realizar el servicio y la cantidad de hojas.</p>
+			          	<p>Solo se puede escoger al mismo tiempo la tinta a color y B/N cuando se trata de un servicio de impresión</p>
+			          	<strong>Paso numero 4: </strong>
+			          	<p>Se escribe una descripcón acerca de lo que trata el pedido. Se debe especificar cuales seran las páginas que deben ir a color y cuales deben ir en blanco y negro.</p>
+			          	<strong>Paso numero 5: </strong>
+			          	<p>Se seleccionan el o los archivos a los cuales se les realizara el servicio. Solo se aceptan formatos <strong>PDF.</strong></p>
+			          	<strong>Paso numero 6: </strong>
+			          	<p>Se presiona el boton aceptar para terminar el proceso.</p>
+			          	<p><strong>Nota:</strong> Si se tiene alguna duda o debe dar una descripcion extra puede <%= link_to 'contactarnos', {controller: :services, action: :contact_us}, 'data-no-turbolink' => true %></p>
+			      	</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

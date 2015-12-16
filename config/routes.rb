@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users 
+  #devise_for :users 
+  devise_for :users, controllers: {sessions: "sessions", :registrations => "registrations"}
+
+  get 'users/panel'
 
   get 'profiles/edit'
   patch 'profiles/update'
@@ -11,11 +14,14 @@ Rails.application.routes.draw do
   get 'services/create'
   get 'services/destroy'
   get 'services/edit'
+  get 'services/contact_us'
+  post 'services/send_email'
   post 'services/update'
 
   get 'orders/prueba'
   get 'orders/index'
   get 'orders/show'
+  get 'orders/show_pagadas'
   get 'orders/new'
   get 'orders/create'
   get 'orders/destroy'

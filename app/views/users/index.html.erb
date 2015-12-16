@@ -1,39 +1,231 @@
-<h2 id="underheader"> logotipo </h2>
-<div class="carousel slide" id="myCarousel">
-			
-	<!-- Indicators -->
-	<ol class="carousel-indicators">
-		<li class="active" data-slide-to="0" data-target="#myCarousel"></li>
-		<li data-slide-to="1" data-target="#myCarousel"></li>
-		<li data-slide-to="2" data-target="#myCarousel"></li>
-	</ol>
+<!-- Homepage Slider -->
+<div class="homepage-slider">
+  <div id="sequence">
+    <ul class="sequence-canvas">
+      <!-- Slide 1 -->
+      <li class="bg4">
+        <!-- Slide Title -->
+        <h2 class="title">Fotocopias e Impresiones</h2>
+        <!-- Slide Text -->
+        <h3 class="subtitle">Al mejor precio de la ciudad!!</h3>
+        <!-- Slide Image -->
+        <%= image_tag("copy_kodak.png", alt: "Slide1", class: "slide-img") %>
+      </li>
+      <!-- End Slide 1 -->
+      <!-- Slide 2 -->
+      <li class="bg3">
+        <!-- Slide Title -->
+        <h2 class="title">Servicio de envió</h2>
+        <!-- Slide Text -->
+        <h3 class="subtitle">Puedes recibir tus copias en la puerta de tu casa</h3>
+        <!-- Slide Image -->
+        <%= image_tag("copy_envio.png", alt: "Slide2", class: "slide-img") %>
+      </li>
+      <!-- End Slide 2 -->
+      <!-- Slide 3 -->
+      <li class="bg1">
+        <!-- Slide Title -->
+        <h2 class="title">Papeleía</h2>
+        <!-- Slide Text -->
+        <h3 class="subtitle">Contamos con diversos materiales escolares en nuestra tienda física!</h3>
+        <!-- Slide Image -->
+        <%= image_tag("copy_utiles.png", alt: "Slide3", class: "slide-img") %>
+      </li>
+      <!-- End Slide 3 -->
+    </ul>
+    <div class="sequence-pagination-wrapper">
+      <ul class="sequence-pagination">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End Homepage Slider -->
 
-	<!-- Wrapper for slides -->
-	<div class="carousel-inner">
-		<div class="item active" id="slide1">
-			<div class="carousel-caption">
-				<h4>Servicio de copiado</h4>
-				<p>Con nosotros puedes realizar pedidos de copias tamaño carta, oficio y extra oficio en blanco y negro.</p>
-			</div><!-- end carousel-caption-->
-		</div><!-- end item -->
-		
-		<div class="item" id="slide2">
-			<div class="carousel-caption">
-				<h4>Learn to code a website in 4-hours!</h4>
-				<p>PSD to HTML5 &amp; CSS3 is a popular Udemy course that has helped thousands of aspiring web designers launch their web design career.</p>
-			</div><!-- end carousel-caption-->
-		</div><!-- end item -->
-		
-		<div class="item" id="slide3">
-			<div class="carousel-caption">
-				<h4>Web Hosting 101</h4>
-				<p>Learn how to buy a perfect domain name and hosting package, and get your website live on the web with ease.</p>
-			</div><!-- end carousel-caption-->
-		</div><!-- end item -->
-	</div><!-- carousel-inner -->
-	
-	<!-- Controls -->
-	<a class="left carousel-control" data-slide="prev" href="#myCarousel"><span class="icon-prev"></span></a>
-	<a class="right carousel-control" data-slide="next" href="#myCarousel"><span class="icon-next"></span></a>
-			
-</div><!-- end myCarousel -->
+<!-- Servicios -->
+<div class="section">
+  <div class="container">
+    <h2>Servicios</h2>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <a href="/"><%= image_tag("copy_impresiones.png", alt: "Impresiones") %></a>
+          </div>
+          <div class="portfolio-info">
+            <ul>
+              <li class="portfolio-project-name">Impresiones</li>
+              <li>Excelente calidad y nitidez</li>
+              <li>
+                <div class="row">
+                  <div class="col-xs-6 blue">
+                    <span class="glyphicon glyphicon-stop"></span> 
+                    <span class="bold-subtitle">Precios a color:</span>
+                    <div>Carta: <%= @services[6][:price] %>Bs.F</div>
+                    <div>Oficio: <%= @services[7][:price] %>Bs.F</div>
+                    <div>Extra-oficio: <%= @services[8][:price] %>Bs.F</div>
+                  </div>
+                  <div class="col-xs-6 black">
+                    <span class="glyphicon glyphicon-stop"></span>
+                    <span class="bold-subtitle">Precios a B/N:</span>
+                    <div>Carta: <%= @services[3][:price] %>Bs.F</div>
+                    <div>Oficio: <%= @services[4][:price] %>Bs.F</div>
+                    <div>Extra-oficio: <%= @services[5][:price] %>Bs.F</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <a href="/"><%= image_tag("copy_copiadora.png", alt: "Fotocopias") %></a>
+          </div>
+          <div class="portfolio-info">
+            <ul>
+              <li class="portfolio-project-name">Fotocopias</li>
+              <li>Realizadas de forma rápida y efectiva</li>
+              <li>
+                <div class="black">
+                  <span class="glyphicon glyphicon-stop"></span>
+                  <span class="bold-subtitle">Precios:</span>
+                  <div>Carta: <%= @services[0][:price] %>Bs.F</div>
+                  <div>Oficio: <%= @services[1][:price] %>Bs.F</div>
+                  <div>Extra-oficio: <%= @services[2][:price] %>Bs.F</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3 col-lg-offset-0 col-lg-4">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <a href="/"><%= image_tag("copy_reduccion.png", alt: "Ampliacion&Reduccion") %></a>
+          </div>
+          <div class="portfolio-info">
+            <ul>
+              <li class="portfolio-project-name">Ampliacion/Reduccion</li>
+              <li>De todo un poco</li>
+              <li>
+                <div class="black">
+                  <span class="glyphicon glyphicon-stop"></span>
+                  <span class="bold-subtitle">Precios:</span>
+                  <div>Carta: <%= @services[9][:price] %>Bs.F</div>
+                  <div>Oficio: <%= @services[10][:price] %>Bs.F</div>
+                  <div>&nbsp;</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+<!-- End Servicios -->
+
+<!-- Pasos de servicio -->  
+<div class="section">
+  <div class="container">
+    <h2>Proceso del pedido</h2>
+    <div class="row">
+      <div class="row step">
+        <div id="div1" class="col-md-2 col-md-offset-1 activestep" onclick="javascript: resetActive(event, 'step-1');">
+          <span class="fa fa-user"></span>
+          <p>Inicia sesión</p>
+        </div>
+        <div class="col-md-2" onclick="javascript: resetActive(event, 'step-2');">
+          <span class="fa fa-hand-paper-o"></span>
+          <p>Crear pedido</p>
+        </div>
+        <div class="col-md-2" onclick="javascript: resetActive(event, 'step-3');">
+          <span class="fa fa-hand-lizard-o"></span>
+          <p>Seleccionar pedidos</p>
+        </div>
+        <div class="col-md-2" onclick="javascript: resetActive(event, 'step-4');">
+          <span class="fa fa-credit-card-alt"></span>
+          <p>Pagos</p>
+        </div>
+        <div class="col-md-2" onclick="javascript: resetActive(event, 'step-5');">
+          <span class="fa fa-flag-checkered"></span>
+          <p>Finalizado</p>
+        </div>
+      </div>
+      <div class="row setup-content step activeStepInfo" id="step-1">
+        <div class="col-xs-12">
+          <div class="col-md-12 well text-center">
+            <h1>PASO   1</h1>
+            <h3 class="subtitle-info">Instrucciones</h3>
+            <p class="info-pedido">Para realizar el pedido debes iniciar sesión, si no posees cuenta puedes registrarte de forma rápida y gratuita.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row setup-content step hiddenStepInfo" id="step-2">
+        <div class="col-xs-12">
+          <div class="col-md-12 well text-center">
+            <h1>PASO 2</h1>
+            <h3 class="subtitle-info">Instrucciones</h3>
+            <p class="info-pedido">En este paso se especificará cuales opciones contendrá el pedido y se subirán los archivos en PDF correspondiente a éste.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row setup-content step hiddenStepInfo" id="step-3">
+        <div class="col-xs-12">
+          <div class="col-md-12 well text-center">
+            <h1>PASO 3</h1>
+            <h3 class="subtitle-info">Instrucciones</h3>
+            <p class="info-pedido">Ahora podra seleccionar cuales de los pedidos realizados desea concretar. En este paso se tendrá la opción de elegir envió a domicilio (ciertas condiciones aplican).</p>
+          </div>
+        </div>
+      </div>
+      <div class="row setup-content step hiddenStepInfo" id="step-4">
+        <div class="col-xs-12">
+          <div class="col-md-12 well text-center">
+            <h1>PASO 4</h1>
+            <h3 class="subtitle-info">Instrucciones</h3>
+            <p class="info-pedido">El metodo de pago sera por transferencia bancaria. Una vez culminado la sección de seleccionar pedidos, se mostrara el monto total a pagar y los datos bancarios.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row setup-content step hiddenStepInfo" id="step-5">
+        <div class="col-xs-12">
+          <div class="col-md-12 well text-center">
+            <h1>PASO 5</h1>
+            <h3 class="subtitle-info">Instrucciones</h3>
+            <p class="info-pedido">Una vez finalizado los pasos anteriores y el pago sea confirmado, CopyOnline se comunicara contigo cuando el pedido este listo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Pasos de servicio -->
+
+<div class="section">
+  <div class="container">
+    <h2>Nosotros</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p class=" text-justify">
+          Iniciamos esta compañia con la finalidad de facilitarle a las personas la forma en como nterdum et malesuada fames ac ante ipsum primis in faucibus. Nam condimentum laoreet sagittis. Duis quis ullamcorper leo. Suspendisse potenti.
+        </p>
+        <div class="col-md-12" style="padding-bottom: 2%; text-align: center;">
+          <%= image_tag("copy_duenos.png", class: "img-responsive", style: "display: inline") %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-12" style="margin-bottom: 2%; text-align: center;">
+          <%= image_tag("copy_banner_1.png", class: "img-responsive", style: "display: inline") %>
+        </div>
+        <p class=" text-justify">
+          et malesuada fames ac ante ipsum primis in faucibus. Nam condimentum laoreet sagittis. Duis quis ullamcorper leo. Suspendisse potenti.et malesuada fames ac ante ipsum primis in faucibus. Nam condimentum laoreet sagittis. Duis quis ullamcorper leo.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,17 @@
+# encoding: utf-8
 class ProfilesController < ApplicationController
 
 	before_action :authenticate_user!
 
 	def edit
+		@titulo = "Editar cuenta"
 		@usuario = User.find(current_user.id)
 	end
 
 	def update
 		@usuario = User.find(current_user.id)
    		if(@usuario.update(user_params))
-     		redirect_to '/'
+     		redirect_to '/', notice:("Cambios realizados con éxito!")
      	else
      		render action: :edit
     	end

@@ -1,0 +1,101 @@
+<style type="text/css">
+	label {
+	  display: block;
+	  position: relative;
+	  padding: 0.5rem 1rem;
+	  line-height: 28px;
+	  font-weight: normal;
+	  cursor: pointer;
+	  font-size: 1em !important;
+	  -webkit-tap-highlight-color: transparent;
+	}
+
+	label:last-of-type { margin-right: 1rem; }
+
+	label i {
+	  display: inline-block;
+	  height: 25px;
+	  position: relative;
+	  top: 3px;
+	  font-style: normal;
+	  color: #ccc;
+	}
+
+	label span {
+	  display: inline-block;
+	  margin-left: 5px;
+	  line-height: 25px;
+	  color: gray;
+	}
+</style>
+<div class="section">
+	<div class="container">
+		<div class="row table-background">
+			<%= form_tag(controller: "orders", action: "procesar_order") do %>
+				<table 
+					id="table"
+					class="table table-hover" 
+					data-toggle="table" 
+	          	 	data-pagination="true"
+	          	 	data-page-list="[5, 10, 20, 50, 100, 200]"
+	          	 	data-locale="es-ES"
+					data-use-row-attr-func="true"
+	       			data-reorderable-rows="true"
+	       			data-pagination-v-align="top"
+	       			data-page-size="5"
+	           	>
+				 	<thead>
+				 		<tr>
+				 			<th data-field="order" data-sortable="true" data-align="center">Número de orden</th>
+				 			<th data-field="servicio" data-sortable="true" data-align="center">Servicios</th>
+				 			<th data-field="hojas" data-sortable="true" data-align="center">Cantidad de hojas</th>
+				 			<th data-field="descripcion" data-sortable="true" data-align="center">Descripción</th>
+				 			<th data-field="nombre" data-sortable="true" data-align="center">Nombre del archivo</th>
+				 			<th data-field="precio" data-sortable="true" data-align="center">Precio(Bs.F)</th>
+				 		</tr>
+				 	</thead>
+
+				 	<tbody>
+				 		<% cont = 0 %>
+						<% @orders.each do |order| %>
+							<% precio = 0 %>
+					 		<tr>
+					 			<td><%= order[:order].id %></td>
+					 			<td class="min-width-td">
+					 				<ul class="padding-left-10">
+					 					<% order[:folder].each do |folder| %>
+					 						<li><%= folder[1].title + ' '+ folder[1].description + ' ' + folder[1].ink %></li>
+					 						<% precio = precio + folder[0].price %>
+					 					<% end %>
+					 				</ul>
+					 			</td>
+					 			<td>
+					 				<ul class="padding-left-10">
+					 					<% order[:folder].each do |folder| %>
+					 						<li><%= folder[0].amount %></li>
+					 					<% end %>
+					 				</ul>
+					 			</td>
+					 			<td>
+					 				<%= link_to '<i class="fa fa-eye fa-lg detalles"></i>'.html_safe, {:controller => "orders", :action => "ver_detalles", :order_id => order[:order].id}, remote: true %>
+					 			</td>
+					 			<td>
+					 				<ul class="padding-left-10">
+					 					<% order[:document].each do |doc| %>
+					 						<li><%= doc.file_file_name %></li>
+					 					<% end %>
+					 				</ul>
+					 			</td>
+					 			<td><%= precio %></td>
+								<% cont = cont + 1 %>
+					 		</tr>
+					 	<% end %>
+				 	</tbody>	 
+				</table>
+			<% end %>
+		</div>
+		
+	</div>
+</div>
+
+<%= render 'partials/dialog' %>

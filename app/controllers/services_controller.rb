@@ -1,8 +1,10 @@
+# encoding: utf-8
 class ServicesController < ApplicationController
 
   before_action :required_admin, only: [:edit, :index, :update]
 
   def index
+    @titulo = "Editar servicios"
     @services = Service.all
   end
 
@@ -16,6 +18,15 @@ class ServicesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def contact_us
+    @titulo = "Contáctenos"
+  end
+
+  def send_email
+    Contact.send_email(params).deliver
+    return redirect_to action: :contact_us, notice:  "Email enviado!"
   end
 
   def update

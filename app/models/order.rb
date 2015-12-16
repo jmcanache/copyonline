@@ -11,10 +11,10 @@ class Order < ActiveRecord::Base
 
   validates_associated :folders
   
-  def self.ordenesAbiertas(user_id)
+  def self.ordenes(user_id, status)
     ds_ordenes = Array.new
     folderID = 0
-  	Order.where(:status => 1, :user_id => user_id).find_each do |order|
+  	Order.where(:status => status, :user_id => user_id).find_each do |order|
       hash = Hash.new
       ds_folder = []
       ds_doc = []

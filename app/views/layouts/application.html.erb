@@ -2,119 +2,184 @@
 <html>
   <head>
     <title>Copyonline</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
+    <meta name="viewport" content="width=device-width">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfv2zduMSniwZIMW9Ezb7BToxi7km88qw&sensor=false"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %> 
     <%= csrf_meta_tags %> 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">  
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
   </head>
   <body>
-    <div id="wrap">
-      <div class="container" id="main" style="font-size: 13px"> 
-      
-        <div class="navbar navbar-fixed-top">
-          <div class="container">
-          	<button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
+  
+    <!-- Navigation & Logo-->
+    <div class="mainmenu-wrapper" style="border-bottom: 4px solid #209c41;">
+      <nav id="mainmenu" class="mainmenu" style="padding: 10px;">
+        <ul>
+          <li class="logo-wrapper"><a href="/"><%= image_tag("copy_logo.png") %></a></li>
+          <li class="navbar-right">
+            <a href="/services/contact_us" data-no-turbolink>Contáctenos</a>
+          </li>
+          <% if user_signed_in? %>
+            <li class="dropdown navbar-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li> <%= link_to '<i class="fa fa-user"></i> &nbsp Editar cuenta'.html_safe, {:controller => :profiles, :action => :edit} %> </li>
+                <li role="separator" class="divider"></li>
+                <li> <%= link_to '<i class="fa fa-power-off"></i> &nbsp Cerrar sesión'.html_safe, destroy_user_session_path, method: :delete %> </li>
+              </ul>
+            </li>
+
+           
+            <% if current_user.admin? %>
+              <li class="dropdown navbar-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes y servicios <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li> <%= link_to '<i class="fa fa-chevron-circle-right"></i> &nbsp Procesar ordenes'.html_safe, {:controller => :payments, :action => :procesar_transferencia, :process => 1} %> </li> 
+                  <li role="separator" class="divider"></li>
+                  <li> <%= link_to '<i class="fa fa-check-square"></i> &nbsp Ordenes procesadas'.html_safe, {:controller => :payments, :action => :procesar_transferencia, :process => 2} %> </li>
+                  <li role="separator" class="divider"></li>
+                  <li> <%= link_to '<i class="fa fa-list-alt"></i> &nbsp Editar servicios'.html_safe, {:controller => :services, :action => :index} %> </li>
+                </ul>
+              </li>
+            <%else%>
+              <li class="dropdown navbar-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li> <%= link_to '<i class="fa fa-pencil-square-o"></i> &nbsp Crear nueva order'.html_safe, {:controller => :orders, :action => :new} %> </li>
+                  <li role="separator" class="divider"></li>
+                  <li> <%= link_to '<i class="fa fa-file-text-o"></i> &nbsp Ordenes realizadas'.html_safe, {:controller => :orders, :action => :show} %> </li>
+                  <li role="separator" class="divider"></li>
+                  <li> <%= link_to '<i class="fa fa-usd"></i> &nbsp Ordenes pagadas'.html_safe, {:controller => :orders, :action => :show_pagadas} %> </li>
+                </ul>
+              </li>
+            <%end%>
+          <% else %>
+            <li class="navbar-right"> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
+            <li class="navbar-right"> <%= link_to "Entrar", new_user_session_path %> </li>
+          <%end%>
+        </ul>
+      </nav>
+    </div>
+
+    <%= render 'partials/pageTitle' unless current_page?('/') %>
+
+    <div class="container">
+      <% if !params[:notice].blank? %>
+        <div style="padding-top: 1%">
+          <div class="alert alert-success fade in"> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-            <a class="navbar-brand" href="/">Home</a>
+            <strong>Exito!  <%= params[:notice]%></strong>
+          </div>
+        </div>
+      <%end%>
+      <% if !flash[:notice].blank? %>
+        <div style="padding-top: 1%">
+          <div class="alert alert-success fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><%= flash[:notice]%></strong>
+          </div>
+        </div>
+      <%end%>
 
-           	<div class="nav-collapse collapse navbar-responsive-collapse">
-  		         	<% if user_signed_in? %>
-                  <ul class="nav navbar-nav pull-right">
-                    <li> <%= link_to "Editar cuenta", {:controller => :profiles, :action => :edit} %> </li>
-        						<li> <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete %> </li>
-                	</ul>
-                  <ul class="nav navbar-nav pull-left">
-        						<% if current_user.admin? %>
-        							<li> <%= link_to "Procesar ordenes", {:controller => :payments, :action => :procesar_transferencia, :process => 1} %> </li> 
-        							<li> <%= link_to "Ordenes procesadas", {:controller => :payments, :action => :procesar_transferencia, :process => 2} %> </li>
-        							<li> <%= link_to "Editar servicios", {:controller => :services, :action => :index} %> </li>
-                    <%else%>
-                      <li> <%= link_to "Crear nueva order", {:controller => :orders, :action => :new} %> </li>
-                      <li> <%= link_to "Mostrar ordenes", {:controller => :orders, :action => :show} %> </li>
-      						  <%end%>
-                  </ul>
-  					    <% else %>
-                  <ul class="nav navbar-nav pull-right">
-        						<li> <%= link_to "Entrar", new_user_session_path %> </li>
-        						<li> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
-                  </ul>
-  					    <%end%> 
-  			    </div>
-          </div><!-- end container -->
-        </div><!-- end navbar -->
-        <% if !params[:notice].blank? %>
-            <div class="alert alert-success fade in" id="underheader">
-              <strong>Exito!  <%= params[:notice]%></strong>
-            </div>
-        <%end%>
-        <% if !flash[:notice].blank? %>
-            <div class="alert alert-success fade in" id="underheader">
-              <strong><%= flash[:notice]%></strong>
-            </div>
-        <%end%>
-
-        <% if !params[:alert].blank? %>
-          <div class="alert alert-danger fade in" id="underheader">
+      <% if !params[:alert].blank? %>
+        <div style="padding-top: 1%">
+          <div class="alert alert-danger fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
             <strong> Error!  <%= params[:alert] %> </strong>
          </div>
-        <%end%>
-        <% if !flash[:alert].blank? %>
-          <div class="alert alert-danger fade in" id="underheader">
+       </div>
+      <%end%>
+      <% if !flash[:alert].blank? %>
+        <div style="padding-top: 1%">
+          <div class="alert alert-danger fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
             <strong> <%= flash[:alert] %> </strong>
          </div>
-        <%end%>
+       </div>
+      <%end%>
 
-
-        <% if !params[:warning].blank? %>
-          <div class="alert alert-warning" id="underheader">
-              <strong>Advertencia!  <%= params[:warning] %></strong>          
+      <% if !params[:warning].blank? %>
+        <div style="padding-top: 1%">
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+             <strong>Advertencia!  <%= params[:warning] %></strong>          
           </div>
-        <%end%>
-        <%= yield %>
-      </div>
+        </div>
+      <%end%>
     </div>
-    
 
-    <footer class="footer">
+    <%= yield %>
+
+    <!-- Footer -->
+    <footer class="footer" style="border-top: 4px solid #209c41;">
       <div class="container">
         <div class="row">
-          <div class="col-sm-2">
-            <h6>Copyright &copy; 2013 {name}</h6>
-          </div><!-- end col-sm-2 -->
-          
-          <div class="col-sm-4">
-            <h6>About Us</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div><!-- end col-sm-4 -->
-          
-          <div class="col-sm-2">
-            <h6>Navigation</h6>
-            <ul class="unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Links</a></li>
-              <li><a href="#">Contact</a></li>
+          <div class="col-footer col-sm-4 col-xs-6">
+            <h3 style="border-bottom: none">Navegacion</h3>
+            <ul class="no-list-style footer-navigate-section">
+              <li><a href="/">Home</a></li>
+              <li>
+               <a href="/services/contact_us">Contactenos</a>
+              </li>
+              <% if user_signed_in? %>
+                <li> <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %> </li>
+                <li> <%= link_to "Editar cuenta", {:controller => :profiles, :action => :edit} %> </li>
+                <% if current_user.admin? %>
+                  <li> <%= link_to "Procesar ordenes", {:controller => :payments, :action => :procesar_transferencia, :process => 1} %> </li> 
+                  <li> <%= link_to "Ordenes procesadas", {:controller => :payments, :action => :procesar_transferencia, :process => 2} %> </li>
+                  <li> <%= link_to "Editar servicios", {:controller => :services, :action => :index} %> </li>
+                <%else%>
+                  <li> <%= link_to "Crear nueva orden", {:controller => :orders, :action => :new} %> </li>
+                  <li> <%= link_to "Ordenes realizadas", {:controller => :orders, :action => :show} %> </li>
+                  <li> <%= link_to "Ordenes pagadas", {:controller => :orders, :action => :show_pagadas} %> </li>
+                <%end%>
+              <% else %>
+                <li> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
+                <li> <%= link_to "Entrar", new_user_session_path %> </li>
+              <%end%>
             </ul>
-          </div><!-- end col-sm-2 -->
+          </div>
           
-          <div class="col-sm-2">
-            <h6>Follow Us</h6>
-            <ul class="unstyled">
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Google Plus</a></li>
+          <div class="col-footer col-sm-5 col-xs-6">
+            <h3 style="border-bottom: none">Contacto</h3>
+            <p class="contact-us-details">
+                <b>direccion:</b> Caujaro, casa tal, manzana tal.<br/>
+                <b>numero:</b> +44 123 654321<br/>
+                <b>Email:</b> <a href="mailto:getintoutch@yourcompanydomain.com">copyOnlibe@gmail.com</a>
+              </p>
+          </div>
+          <div class="col-footer col-sm-3 col-xs-6">
+            <h3 style="border-bottom: none">Siguenos</h3>
+            <ul class="footer-stay-connected no-list-style">
+              <li><a href="#" class="facebook"></a></li>
+              <li><a href="#" class="twitter"></a></li>
             </ul>
-          </div><!-- end col-sm-2 -->
-          
-          <div class="col-sm-2">
-            <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Brad</h6>
-          </div><!-- end col-sm-2 -->
-        </div><!-- end row -->
-      </div><!-- end container -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="footer-copyright">&copy; 2016 CopyOnline21 . Todos los derechos reservados.</div>
+          </div>
+        </div>
+      </div>
     </footer>
+  
   </body>
 </html>

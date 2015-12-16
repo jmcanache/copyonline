@@ -6,12 +6,12 @@ h3 Servicios
 		b Servicio: 
 		| #{folder.service[:title]}_#{folder.service[:description]}_#{folder.service[:ink]}          
 	
-		b cantidad de hojas:  
+		b Cantidad de hojas:  
 		| #{folder[:amount]}
 
-h3 Descripcion
+h3 Descripción
 ==@order.folders[0][:description]
 
-h3 documentos
+h3 Documentos
 -@order.folders[0].document.each do |document|
 	p: a[href= "#{document.file.url(download: true)}"] #{document[:file_file_name]}

@@ -1,0 +1,34 @@
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2 table-background">
+				<table 
+					id="table"
+					class="table table-hover" 
+					data-toggle="table" 
+					data-use-row-attr-func="true"
+           			data-reorderable-rows="true"
+               	>
+				 	<thead>
+				 		<tr>
+				 			<th data-field="servicio" data-sortable="true" data-align="center">Servicio</th>
+				 			<th data-field="hoja" data-sortable="true" data-align="center">Tipo de hoja</th>
+				 			<th data-field="tinta" data-sortable="true" data-align="center">Tinta</th>
+				 			<th data-field="precio" data-sortable="true" data-align="center">Precio</th>
+				 		</tr>
+				 	</thead>
+				 	<tbody>
+				 		<% @services.each do |service| %>
+				 			<tr>
+				 				<td> <%= service.title %> </td>
+				 				<td> <%= service.description %> </td>
+				 				<td> <%= service.ink %> </td>
+				 				<td><a href="#" id="editService<%=service.id%>" name="editService" data-type="number" data-pk="<%=service.id%>" data-url="/services/update/" data-title="Introduzca Precio"><%=service.price%></a></td>
+				 			</tr>
+				 		<% end %>
+				 	</tbody>	 
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
