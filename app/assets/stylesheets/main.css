@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------*/
 
 body {
-  background: url(page-background.png);
+  background: url(../images/page-background.png);
 }
 
 .info-pedido{
@@ -1879,7 +1879,7 @@ span.color-red {
   display: block;
   width: 115px;
   height: 40px;
-  background: url(stay-connected.png);
+  background: url(../images/stay-connected.png);
   -webkit-opacity: 0.5;
   -moz-opacity: 0.5;
   opacity: 0.5;
@@ -2046,46 +2046,46 @@ span.color-red {
   background-position: -50px 0;
 }
 #sequence > .sequence-canvas > li.bg1 {
-  background-image: url(slider-bg1.jpg);
+  background-image: url(../images/slider-bg1.jpg);
 }
 #sequence > .sequence-canvas > li.bg2 {
-  background-image: url(slider-bg2.jpg);
+  background-image: url(../images/slider-bg2.jpg);
 }
 #sequence > .sequence-canvas > li.bg3 {
-  background-image: url(slider-bg3.jpg);
+  background-image: url(../images/slider-bg3.jpg);
 }
 #sequence > .sequence-canvas > li.bg4 {
-  background-image: url(slider-bg4.jpg);
+  background-image: url(../images/slider-bg4.jpg);
 }
 #sequence > .sequence-canvas > li.bg5 {
-  background-image: url(slider-bg5.jpg);
+  background-image: url(../images/slider-bg5.jpg);
 }
 #sequence > .sequence-canvas > li.bg6 {
-  background-image: url(slider-bg6.jpg);
+  background-image: url(../images/slider-bg6.jpg);
 }
 #sequence > .sequence-canvas > li.bg7 {
-  background-image: url(slider-bg7.jpg);
+  background-image: url(../images/slider-bg7.jpg);
 }
 #sequence > .sequence-canvas > li.bg8 {
-  background-image: url(slider-bg8.jpg);
+  background-image: url(../images/slider-bg8.jpg);
 }
 #sequence > .sequence-canvas > li.bg9 {
-  background-image: url(slider-bg9.jpg);
+  background-image: url(../images/slider-bg9.jpg);
 }
 #sequence > .sequence-canvas > li.bg10 {
-  background-image: url(slider-bg10.jpg);
+  background-image: url(../images/slider-bg10.jpg);
 }
 #sequence > .sequence-canvas > li.bg11 {
-  background-image: url(slider-bg11.jpg);
+  background-image: url(../images/slider-bg11.jpg);
 }
 #sequence > .sequence-canvas > li.bg12 {
-  background-image: url(slider-bg12.jpg);
+  background-image: url(../images/slider-bg12.jpg);
 }
 #sequence > .sequence-canvas > li.bg13 {
-  background-image: url(slider-bg13.jpg);
+  background-image: url(../images/slider-bg13.jpg);
 }
 #sequence > .sequence-canvas > li.bg14 {
-  background-image: url(slider-bg14.jpg);
+  background-image: url(../images/slider-bg14.jpg);
 }
 #sequence > .sequence-canvas > li img {
   height: 96%;
