@@ -29,7 +29,8 @@ global: &global
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
   username: root
-  password: 'jparadasb'
+  #password: 'jparadasb'
+  password: 'abc123'
 
 development:
   <<: *global
