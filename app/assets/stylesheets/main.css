@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------*/
 
 body {
-  background: url(images/page-background.png);
+  background: url(/images/page-background.png);
 }
 
 .info-pedido{
@@ -1879,7 +1879,7 @@ span.color-red {
   display: block;
   width: 115px;
   height: 40px;
-  background: url(../images/stay-connected.png);
+  background: url(/images/stay-connected.png);
   -webkit-opacity: 0.5;
   -moz-opacity: 0.5;
   opacity: 0.5;
@@ -2055,7 +2055,7 @@ span.color-red {
   background-image: url(/images/slider-bg3.jpg);
 }
 #sequence > .sequence-canvas > li.bg4 {
-  background-image: url(images/slider-bg4.jpg);
+  background-image: url(/images/slider-bg4.jpg);
 }
 #sequence > .sequence-canvas > li.bg5 {
   background-image: url(../images/slider-bg5.jpg);
