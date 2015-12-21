@@ -118,6 +118,9 @@
 					</div>
 					<div class="col-sm-6" style="padding-bottom: 10px"> 
 						<%= text_area_tag 'direccion', '', placeholder: 'Dirección de envio', :required => false, maxlength: 100, class: "form-control", style: "width:100%; height:100px" %>
+						<p>
+							<span style="font-weight: bold">Nota:</span> El costo del envio tendra un costo adicional de <span style="font-weight: bold; color:blue"><u><%= @servicioEnvio %></u></span>
+						</p>
 					</div>
 					<div class="col-sm-offset-2 col-sm-4">
 						<%= submit_tag "Siguiente", class: "btn-blue btn-lg btn-block" %>

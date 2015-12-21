@@ -12,9 +12,9 @@ class PaymentsController < ApplicationController
   	@payment = Payment.includes({orders: [{folders: :service}, {folders: :document}, :user]}, :banco).where(:process => params[:process])
     if @payment.blank?
       if params[:process] == "2"
-       redirect_to :controller => :users, :action => :index, warning: "No tiene ninguna orden procesada"
+       params[:warning] = "No tiene ninguna orden procesada"
       else
-       redirect_to :controller => :users, :action => :index, warning: "No tiene ordenes por procesar"
+       params[:warning] = "No tiene ordenes por procesar"
       end
     end
     @process = params[:process]

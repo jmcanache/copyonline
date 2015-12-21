@@ -6,10 +6,15 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfv2zduMSniwZIMW9Ezb7BToxi7km88qw&sensor=false"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
-    <%= csrf_meta_tags %> 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+    <%= csrf_meta_tags %>
+
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'> 
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">  
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    
+
     <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js"></script>
@@ -22,7 +27,7 @@
     <div class="mainmenu-wrapper" style="border-bottom: 4px solid #209c41;">
       <nav id="mainmenu" class="mainmenu" style="padding: 10px;">
         <ul>
-          <li class="logo-wrapper"><a href="/"><%= image_tag("copy_logo.png") %></a></li>
+          <li class="logo-wrapper"><a href="/" style="margin-left: 15%"><%= image_tag("copy_logo.png") %></a></li>
           <li class="navbar-right">
             <a href="/services/contact_us" data-no-turbolink>Contáctenos</a>
           </li>
@@ -132,7 +137,7 @@
       <div class="container">
         <div class="row">
           <div class="col-footer col-sm-4 col-xs-6">
-            <h3 style="border-bottom: none">Navegacion</h3>
+            <h3 style="border-bottom: none">Navegación</h3>
             <ul class="no-list-style footer-navigate-section">
               <li><a href="/">Home</a></li>
               <li>
@@ -160,13 +165,13 @@
           <div class="col-footer col-sm-5 col-xs-6">
             <h3 style="border-bottom: none">Contacto</h3>
             <p class="contact-us-details">
-                <b>direccion:</b> Caujaro, casa tal, manzana tal.<br/>
-                <b>numero:</b> +44 123 654321<br/>
-                <b>Email:</b> <a href="mailto:getintoutch@yourcompanydomain.com">copyOnlibe@gmail.com</a>
+                <b>Direccion: </b> Urbanización Caujaro, Avenida Principal, bajando por la Licorería Caujaro.<br/>
+                <b>Telefono: </b>0286-7174576<br/>
+                <b>Email: </b> <a href="copyonline21@gmail.com">copyonline21@gmail.com</a>
               </p>
           </div>
           <div class="col-footer col-sm-3 col-xs-6">
-            <h3 style="border-bottom: none">Siguenos</h3>
+            <h3 style="border-bottom: none">Síguenos</h3>
             <ul class="footer-stay-connected no-list-style">
               <li><a href="#" class="facebook"></a></li>
               <li><a href="#" class="twitter"></a></li>

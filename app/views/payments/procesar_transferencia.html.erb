@@ -77,4 +77,8 @@
 	</div>
 </div>
 
+<% if @payment.blank? %>
+	<div style="padding-bottom: 4%"></div>
+<% end %>
+
 <%= render 'partials/dialog' %>
