@@ -74,7 +74,8 @@ Rails.application.configure do
     :port                 => 465,  
     :domain               => "gmail.com",  
     :user_name            => "copyonlinetest@gmail.com",  
-    :password             => "copyonline",  
+    :password             => "copyonline", 
+    :ssl                  => true,
     :authentication       => "plain",  
     :enable_starttls_auto => true  
   } 
