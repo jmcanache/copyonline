@@ -31,6 +31,7 @@
 <div class="section">
 	<div class="container">
 		<div class="row table-background">
+			<input type="hidden" id="sumPages" value="0">
 			<%= form_tag(controller: "orders", action: "procesar_order") do %>
 				<table 
 					id="table"
@@ -66,7 +67,7 @@
 					 			<td data-align="center">
 					 				<div class="form-group no-margin"> 
 										<label class="no-margin">
-											<%= check_box_tag cont, order[:order].id %> <i></i> 
+											<%= check_box_tag cont, order[:order].id, false, class: 'EnvioDom' %>  <i></i> 
 										</label>
 									</div>
 								</td>
@@ -109,7 +110,7 @@
 				<div class="row table-background" style="padding-top: 4%">
 					<div class="form-group col-sm-12">
 	        			<strong>Envio a domicilio?</strong>
-						<label class="radio-inline no-padding">
+						<label class="radio-inline no-padding" id="envioSi" style="display: none">
 							<%= radio_button_tag 'envio', 1, :required => :true %> <i></i> <span>Si</span>
 						</label>
 						<label class="radio-inline no-padding">
@@ -119,7 +120,7 @@
 					<div class="col-sm-6" style="padding-bottom: 10px"> 
 						<%= text_area_tag 'direccion', '', placeholder: 'Dirección de envio', :required => false, maxlength: 100, class: "form-control", style: "width:100%; height:100px" %>
 						<p>
-							<span style="font-weight: bold">Nota:</span> El costo del envio tendra un costo adicional de <span style="font-weight: bold; color:blue"><u><%= @servicioEnvio %></u></span>
+							<span style="font-weight: bold">Nota:</span> Puede solicitar el envío si el pedido sobrepasa las 100 hojas y tendra un costo adicional de <span style="font-weight: bold; color:blue"><u><%= @servicioEnvio %></u></span>. Click <%= link_to 'AQUI','#', data: {toggle: "modal", target: "#myModal"} %> para ver las zonas permitidas.
 						</p>
 					</div>
 					<div class="col-sm-offset-2 col-sm-4">
@@ -130,6 +131,24 @@
 		</div>
 		
 	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Zonas permitidas para el envío</h4>
+      		</div>
+	      	<div class="modal-body">
+	        ...
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	      	</div>
+	    </div>
+  	</div>
 </div>
 
 <%= render 'partials/dialog' %>

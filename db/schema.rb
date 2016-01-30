@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120214500) do
+ActiveRecord::Schema.define(version: 20160125160046) do
 
   create_table "bancos", force: :cascade do |t|
     t.string   "descripcion", limit: 255,               null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20151120214500) do
     t.integer  "service_id",  limit: 4
     t.integer  "amount",      limit: 4
     t.text     "description", limit: 65535
+    t.string   "pages",       limit: 255
   end
 
   add_index "folders", ["order_id"], name: "index_folders_on_order_id", using: :btree
@@ -78,10 +79,10 @@ ActiveRecord::Schema.define(version: 20151120214500) do
   create_table "services", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
+    t.string   "ink",         limit: 255
     t.float    "price",       limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.string   "ink",         limit: 255
   end
 
   create_table "users", force: :cascade do |t|

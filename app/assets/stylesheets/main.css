@@ -56,13 +56,13 @@ input[readonly] {
 }
 @media (max-width: 1200px){
   .auto-height{
-    height: 503px; 
+    height: 530px; 
     overflow-y: auto;
   }
 }
 @media (min-width: 1201px){
   .auto-height{
-    height: 483px; 
+    height: 530px; 
     overflow-y: auto;
   }
 }

@@ -56,7 +56,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <%= f.submit "Registrarse", class: "btn pull-right" %>
+                <%= f.submit "Registrarse", data: { disable_with: 'Registrarse' }, remote: true, class: "btn pull-right" %>
                 <div class="clearfix"></div>
               </div>
             </form>

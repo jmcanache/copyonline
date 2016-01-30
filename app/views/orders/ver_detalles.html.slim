@@ -1,4 +1,4 @@
-h1 id="underheader" Detalles de la orden
+h1 Detalles de la orden
 h3 Servicios
 -@order.folders.each do |folder|
 	
@@ -9,8 +9,11 @@ h3 Servicios
 		b Cantidad de hojas:  
 		| #{folder[:amount]}
 
-h3 Descripción
+h3 Descripciónsss
 ==@order.folders[0][:description]
+
+h3 Páginas a color
+==@order.folders[0][:pages]
 
 h3 Documentos
 -@order.folders[0].document.each do |document|

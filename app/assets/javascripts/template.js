@@ -96,11 +96,12 @@ $(document).ready(function(){
 
 	//Habilitaciones al momento de crear una orden new.html.erb
 	$('#order_servicio_impresion').click(function(){
-		$('#order_color, #order_hoja_extra_oficio').closest('label').fadeIn();
+		$('#order_color, #folder_pages').closest('label').fadeIn();
 	});
 
 	$('#order_servicio_reduccion, #order_servicio_ampliacion').click(function(){
-		$('#order_color, #order_hoja_extra_oficio').removeAttr('checked').closest('label').fadeOut();
+		$('#folder_pages').attr('disabled', 'disabled').closest('label').fadeOut();
+		$('#order_color').removeAttr('checked').closest('label').fadeOut();
 		$('#folder_amount_color').prop('disabled', 'disabled');
 		if(! $('#order_hoja_oficio').is(':checked')){
 			$('#order_hoja_carta').prop( "checked", true );
@@ -108,13 +109,14 @@ $(document).ready(function(){
 	});
 
 	$('#order_servicio_copia').click(function(){
+		$('#folder_pages').attr('disabled', 'disabled').closest('label').fadeOut();
 		$('#order_color').removeAttr('checked').closest('label').fadeOut();
 		$('#folder_amount_color').prop('disabled', 'disabled');
-		$('#order_hoja_extra_oficio').closest('label').fadeIn();
 	});
 
 	$('#order_color').click(function(){
 		$(this).is( ":checked" )? $('#folder_amount_color').removeAttr('disabled') : $('#folder_amount_color').attr('disabled', 'disabled');
+		$(this).is( ":checked" )? $('#folder_pages').removeAttr('disabled') : $('#folder_pages').attr('disabled', 'disabled');
 	});
 
 	$('#order_blanco_negro').click(function(){
@@ -135,6 +137,26 @@ $(document).ready(function(){
             if( log ) alert(log);
         }
 	});
+
+	//validacion del input paginas a color
+	$('#folder_pages').blur(function(){
+		numbers = $(this).val().trim();
+		if (! isPagesNumberValid(numbers)){
+			$('#submitOrder').attr('disabled', 'disabled');
+			$(this).closest('label').addClass('has-error').append("<span id='help-page' class='help-block'>Error de formato.</span>");
+
+		}else{
+			$('#submitOrder').removeAttr('disabled');
+			$(this).closest('label').removeClass('has-error');
+			$('#help-page').remove();
+		}
+	});
+
+	function isPagesNumberValid(numbers) {
+	    var pattern = /^[0-9]{1,5}( *- *[0-9]{1,5})*$/;
+	    return numbers.length == 0 ? true : pattern.test(numbers);
+	};
+
 	//Fin de habilitaciones al momento de crear una orden new.html.erb
 
 	// //Contact Us Map
@@ -180,6 +202,30 @@ $(document).ready(function(){
 
 	google.maps.event.addDomListener(window, 'load', init_map);
 
+	//AJAX para obtener ifmacion de cantidad de envios
+	$('.EnvioDom').change(function(){
+		var id = $(this).val();
+		var checked = $(this);
+		var currentPages = parseInt($('#sumPages').val());
+	    $.ajax({
+	    	type: 'POST', 
+	    	url: '/orders/envio',
+	    	dataType: 'json',
+	    	data: {"id": id}, 
+	    	async: true,
+	    	cache: false,
+	    	success: function (d) {
+	    		checked.is(':checked') ? currentPages+=d : currentPages-=d;
+	    		$('#sumPages').val(currentPages);
+    			if(currentPages >= 100){
+    				$('#envioSi').fadeIn();
+	    		}else{
+    				$('#envioSi').fadeOut();
+    				$('#envio_0').prop('checked', true);
+	    		}
+		 	}
+	  	})
+	})
 });
 
 function resetActive(event, step) {

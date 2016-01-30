@@ -85,9 +85,6 @@
 											<label>
 												<%= f.radio_button 'hoja', 'Oficio', :required => :true %> <i></i> <span>Oficio</span>
 											</label>
-											<label>
-												<%= f.radio_button 'hoja', 'Extra_oficio', :required => :true %> <i></i> <span>Extra-oficio</span>
-											</label>
 										</div>
 									</div>
 
@@ -101,6 +98,10 @@
 											<label>
 												<%= f.check_box :color %> <i></i> <span>Color</span>
 											  	<%= fa.number_field 'amount_color', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 120px;" %>
+											</label>
+											<label>
+												<span class="control-label">Páginas a color</span>
+											  	<%= fa.text_field 'pages', :required => :true, disabled: true, class: "form-control", style: "width: 120px;", placeholder: "ej: 2-3-4-5" %>
 											</label>
 										</div>
 									</div>

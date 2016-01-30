@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   get 'orders/edit'
   get 'orders/ver_detalles'
   get 'orders/eliminar_orden'
+
+  post 'orders/envio'
+
   post 'orders/create'
   post 'orders/procesar_order'
   post 'orders/procesar_transferencia'

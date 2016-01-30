@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  #respond_to :json, :html
   before_action :authenticate_user!, except: [:index]
   #before_action :delete_session, only: [:procesar_order]
 
@@ -42,7 +43,8 @@ class OrdersController < ApplicationController
     if(params[:order][:color] == "1")
       servicio = Service.where(:title => params[:order][:servicio], :description => params[:order][:hoja], :ink => 'color').first
       cantidad = params[:folder][:amount_color]
-      guardar = iniciar_transaccion(servicio, save_order, cantidad)
+      pages = params[:folder][:pages]
+      guardar = iniciar_transaccion(servicio, save_order, cantidad, pages)
       save_order = false
     end
 
@@ -134,9 +136,19 @@ class OrdersController < ApplicationController
     end
   end
 
+  def envio
+    pages = 0
+    Folder.where(:order_id => params[:id]).find_each do |folder|
+      pages += folder[:amount]
+    end
+    respond_to do |format|
+      format.json { render json: pages }
+    end
+  end
+
   private
 
-  def iniciar_transaccion(servicio, save_order, cantidad)
+  def iniciar_transaccion(servicio, save_order, cantidad, pages = 0)
     todo_ok = true
     Order.transaction do
       if save_order
@@ -149,7 +161,7 @@ class OrdersController < ApplicationController
         end
       end
       precio = cantidad.to_f * servicio[:price].to_f
-      @folders = Folder.new(price: precio, order_id: session[:order_id], service_id: servicio[:id], amount: cantidad, description: params[:folder][:description])
+      @folders = Folder.new(price: precio, order_id: session[:order_id], service_id: servicio[:id], amount: cantidad, description: params[:folder][:description], pages: pages)
       if @folders.save and todo_ok == true
         params[:document][:file].each do |doc|
           @document = Document.new(:file => doc, :folder_id => @folders.id)
