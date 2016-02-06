@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<p>Realizaron una orden por un monto total de <%= @data[:Total_price] %> BsF.</p> 
+		<% if @data[:shipping] == 1%>
+			<p>Envío a domicilio: Si </p>
+			<p>Dirección: <%= @data[:shipping_address] %> </p>
+		<%else%>
+			<p> Envío a domicilio: No </p>
+		<% end %>
+
+		<p>Número de transferencia: <%= @data[:transfer_number] %></p>
+		<p>Banco: <%= @banco %> </p>
+	</body>
+</html>

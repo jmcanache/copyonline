@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125160046) do
+ActiveRecord::Schema.define(version: 20160206225222) do
 
   create_table "bancos", force: :cascade do |t|
     t.string   "descripcion", limit: 255,               null: false
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20160125160046) do
     t.string   "nombre",                 limit: 255
     t.string   "apellido",               limit: 255
     t.string   "telefono",               limit: 255
-    t.integer  "cedula",                 limit: 4
+    t.string   "cedula",                 limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false
@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 20160125160046) do
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.integer  "admin",                  limit: 4,   default: 0
+    t.integer  "jn",                     limit: 4
+    t.string   "city",                   limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

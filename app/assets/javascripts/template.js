@@ -141,10 +141,11 @@ $(document).ready(function(){
 	//validacion del input paginas a color
 	$('#folder_pages').blur(function(){
 		numbers = $(this).val().trim();
-		if (! isPagesNumberValid(numbers)){
-			$('#submitOrder').attr('disabled', 'disabled');
-			$(this).closest('label').addClass('has-error').append("<span id='help-page' class='help-block'>Error de formato.</span>");
-
+		if (! isPagesNumberValid(numbers) ){
+			if(!($('#help-page').length)){
+				$('#submitOrder').attr('disabled', 'disabled');
+				$(this).closest('label').addClass('has-error').append("<span id='help-page' class='help-block'>Error de formato.</span>");
+			}
 		}else{
 			$('#submitOrder').removeAttr('disabled');
 			$(this).closest('label').removeClass('has-error');
@@ -202,7 +203,7 @@ $(document).ready(function(){
 
 	google.maps.event.addDomListener(window, 'load', init_map);
 
-	//AJAX para obtener ifmacion de cantidad de envios
+	//AJAX para obtener iformacion de cantidad de envios
 	$('.EnvioDom').change(function(){
 		var id = $(this).val();
 		var checked = $(this);
@@ -226,6 +227,11 @@ $(document).ready(function(){
 		 	}
 	  	})
 	})
+
+    //conmutacion entre N/J en el registro de nuevos usuarios
+    $('#user_jn').change(function(){
+    	$( "select option:selected" ).val() == "0" ?  $('#user_cedula').attr('placeholder', 'Cédula') : $('#user_cedula').attr('placeholder', 'Rif');
+    });
 });
 
 function resetActive(event, step) {

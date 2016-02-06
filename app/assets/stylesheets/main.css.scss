@@ -1879,7 +1879,7 @@ span.color-red {
   display: block;
   width: 115px;
   height: 40px;
-  background: url(/images/stay-connected.png);
+  background: image-url("stay-connected.png");
   -webkit-opacity: 0.5;
   -moz-opacity: 0.5;
   opacity: 0.5;
@@ -2046,7 +2046,7 @@ span.color-red {
   background-position: -50px 0;
 }
 #sequence > .sequence-canvas > li.bg1 {
-  background-image: image-url("lider-bg1.jpg");
+  background-image: image-url("slider-bg1.jpg");
 }
 #sequence > .sequence-canvas > li.bg2 {
   background-image: image-url("slider-bg2.jpg");
@@ -2055,37 +2055,37 @@ span.color-red {
   background-image: image-url("slider-bg3.jpg");
 }
 #sequence > .sequence-canvas > li.bg4 {
-  background-image: image-url("lider-bg4.jpg");
+  background-image: image-url("slider-bg4.jpg");
 }
 #sequence > .sequence-canvas > li.bg5 {
-  background-image: image-url("lider-bg5.jpg");
+  background-image: image-url("slider-bg5.jpg");
 }
 #sequence > .sequence-canvas > li.bg6 {
-  background-image: image-url("lider-bg6.jpg");
+  background-image: image-url("slider-bg6.jpg");
 }
 #sequence > .sequence-canvas > li.bg7 {
-  background-image: image-url("lider-bg7.jpg");
+  background-image: image-url("slider-bg7.jpg");
 }
 #sequence > .sequence-canvas > li.bg8 {
-  background-image: image-url("lider-bg8.jpg");
+  background-image: image-url("slider-bg8.jpg");
 }
 #sequence > .sequence-canvas > li.bg9 {
-  background-image: image-url("lider-bg9.jpg");
+  background-image: image-url("slider-bg9.jpg");
 }
 #sequence > .sequence-canvas > li.bg10 {
-  background-image: image-url("lider-bg10.jpg");
+  background-image: image-url("slider-bg10.jpg");
 }
 #sequence > .sequence-canvas > li.bg11 {
-  background-image: image-url("lider-bg11.jpg");
+  background-image: image-url("slider-bg11.jpg");
 }
 #sequence > .sequence-canvas > li.bg12 {
-  background-image: image-url("lider-bg12.jpg");
+  background-image: image-url("slider-bg12.jpg");
 }
 #sequence > .sequence-canvas > li.bg13 {
-  background-image: image-url("lider-bg13.jpg");
+  background-image: image-url("slider-bg13.jpg");
 }
 #sequence > .sequence-canvas > li.bg14 {
-  background-image: image-url("lider-bg14.jpg");
+  background-image: image-url("slider-bg14.jpg");
 }
 #sequence > .sequence-canvas > li img {
   height: 96%;
@@ -2950,3 +2950,12 @@ span.color-red {
   border-bottom-right-radius: 3px;
 }
 /*Fin de CSS Para tablas*/
+
+/* menu principal hover */
+.bigger:hover {
+  font-size: 1.4em;
+}
+.open .dropdown-toggle {
+  font-size: 1.4em;
+  color: #4f8db3;
+}

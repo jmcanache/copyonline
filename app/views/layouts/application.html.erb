@@ -29,11 +29,11 @@
         <ul>
           <li class="logo-wrapper"><a href="/" style="margin-left: 15%"><%= image_tag("copy_logo.png") %></a></li>
           <li class="navbar-right">
-            <a href="/services/contact_us" data-no-turbolink>Contáctenos</a>
+            <a href="/services/contact_us" data-no-turbolink class="bigger">Contáctenos</a>
           </li>
           <% if user_signed_in? %>
             <li class="dropdown navbar-right">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle bigger" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li> <%= link_to '<i class="fa fa-user"></i> &nbsp Editar cuenta'.html_safe, {:controller => :profiles, :action => :edit} %> </li>
                 <li role="separator" class="divider"></li>
@@ -44,7 +44,7 @@
            
             <% if current_user.admin? %>
               <li class="dropdown navbar-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes y servicios <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle bigger" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes y servicios <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li> <%= link_to '<i class="fa fa-chevron-circle-right"></i> &nbsp Procesar ordenes'.html_safe, {:controller => :payments, :action => :procesar_transferencia, :process => 1} %> </li> 
                   <li role="separator" class="divider"></li>
@@ -55,7 +55,7 @@
               </li>
             <%else%>
               <li class="dropdown navbar-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle bigger" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li> <%= link_to '<i class="fa fa-pencil-square-o"></i> &nbsp Crear nueva order'.html_safe, {:controller => :orders, :action => :new} %> </li>
                   <li role="separator" class="divider"></li>
@@ -66,8 +66,8 @@
               </li>
             <%end%>
           <% else %>
-            <li class="navbar-right"> <%= link_to "Crear cuenta", new_user_registration_path %> </li>
-            <li class="navbar-right"> <%= link_to "Entrar", new_user_session_path %> </li>
+            <li class="navbar-right"> <%= link_to "Crear cuenta", new_user_registration_path, class: "bigger" %> </li>
+            <li class="navbar-right"> <%= link_to "Entrar", new_user_session_path, class: "bigger" %> </li>
           <%end%>
         </ul>
       </nav>

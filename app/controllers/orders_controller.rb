@@ -111,6 +111,8 @@ class OrdersController < ApplicationController
       end
 
       if todo_ok
+        banco = Banco.find(params[:banco]).descripcion
+        Transfer.transfer_info(payment, banco).deliver
         redirect_to :controller => :orders, :action => :show_pagadas, notice:('Pago realizado')
       else
         redirect_to :controller => :orders, :action => :show, alert:('Ocurrio un problema en el pago, intente de nuevo')

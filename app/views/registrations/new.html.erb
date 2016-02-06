@@ -28,7 +28,10 @@
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fa fa-sort-numeric-asc fa-fw"></i></div>
-                  <%= f.number_field :cedula, required: true, placeholder: "Cédula", class: "form-control" %>
+                  <%= f.text_field :cedula, required: true, placeholder: "Cédula", class: "form-control" %>
+                  <div class="input-group-addon" style="padding: 0">
+                    <%= f.select :jn, '<option value="0">V</option><option value="1">J</option>'.html_safe, {}, class: "combobox", style: "height: 32px" %>
+                  </div>
                 </div>
               </div>
               <div class="form-group">
@@ -41,6 +44,12 @@
                 <div class="input-group">
                   <div class="input-group-addon"><i class="fa fa-mobile fa-fw"></i></div>
                   <%= f.number_field :telefono, required: true, placeholder: "Telefono celular", class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></div>
+                    <%= f.select :city, '<option value="Puerto Ordaz">Puerto Ordaz</option><option value="San Felix">San Felíx</option>'.html_safe, {}, class: "form-control" %>
                 </div>
               </div>
               <div class="form-group">
