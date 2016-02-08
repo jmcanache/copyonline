@@ -37,9 +37,9 @@ class PaymentsController < ApplicationController
   end
 
   def count_new_orders
-    payment = Payment.where(:process => 1).count
+    session[:count] = Payment.where(:process => 1).count
     respond_to do |format|
-      format.json { render json: payment }
+      format.json { render json: session[:count] }
     end
   end
 
