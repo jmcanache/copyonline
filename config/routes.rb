@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get 'payments/procesar_transferencia'
   get 'payments/ver_detalles'
   get 'payments/orden_finalizada'
+  get 'payments/count_new_orders'
 
   resources :services
   resources :folders

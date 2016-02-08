@@ -31,7 +31,15 @@ class PaymentsController < ApplicationController
   def orden_finalizada
     payment = Payment.find(params[:payment_id])
     if(payment.update(:process => 2))
+      session[:count] -= 1
       redirect_to :action => "procesar_transferencia", :process => 1
+    end
+  end
+
+  def count_new_orders
+    payment = Payment.where(:process => 1).count
+    respond_to do |format|
+      format.json { render json: payment }
     end
   end
 

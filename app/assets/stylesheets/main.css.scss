@@ -2959,3 +2959,25 @@ span.color-red {
   font-size: 1.4em;
   color: #4f8db3;
 }
+
+/*paginacion*/
+div.pagination{
+  margin: 0px;
+}
+
+
+
+a.notification:after {
+  content: attr(data-count);
+  font-size: 13px;
+  background: #cc0001;
+  border-radius: 3px;
+  color: #fff;
+  z-index: 99999;
+  font-weight: 600;
+  padding: 4px 7px;
+  box-shadow: -1px 2px 3px rgba(0,0,0,.3), inset 0 2px 5px rgba(225,225,225,.3);
+  position: relative;
+  top: -12px;
+  left: 7px;
+}

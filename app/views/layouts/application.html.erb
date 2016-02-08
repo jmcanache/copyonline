@@ -44,7 +44,7 @@
            
             <% if current_user.admin? %>
               <li class="dropdown navbar-right">
-                <a href="#" class="dropdown-toggle bigger" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes y servicios <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle bigger <%= session[:count] == 0 ? '' : 'notification'.html_safe %>" data-count='<%= session[:count]%>' data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes y servicios <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li> <%= link_to '<i class="fa fa-chevron-circle-right"></i> &nbsp Procesar ordenes'.html_safe, {:controller => :payments, :action => :procesar_transferencia, :process => 1} %> </li> 
                   <li role="separator" class="divider"></li>

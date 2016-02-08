@@ -42,6 +42,8 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-combobox (1.2.6)
+    bootstrap-will_paginate (0.0.10)
+      will_paginate
     builder (3.2.2)
     cancan (1.6.10)
     climate_control (0.0.3)
@@ -208,6 +210,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-combobox (~> 1.2, >= 1.2.6)
+  bootstrap-will_paginate
   cancan
   coffee-rails (~> 4.1.0)
   coffee-script-source (~> 1.8.0)

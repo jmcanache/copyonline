@@ -266,3 +266,17 @@ function showCurrentStepInfo(step) {
     var id = "#" + step;
     $(id).addClass("activeStepInfo");
 }
+
+setInterval(function getCountOrder(){
+	//AJAX para obtener iformacion de cantidad de envio
+    $.ajax({
+    	type: 'GET', 
+    	url: '/payments/count_new_orders',
+    	dataType: 'json',
+    	async: true,
+    	cache: false,
+    	success: function (d) {
+    		$('.notification').attr('data-count', d);
+	 	}
+  	})
+}, 1000 * 60 * 5);

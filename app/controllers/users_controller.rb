@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 	def panel
 		@titulo = "Panel de gestión"
 		if current_user.admin?
+			session[:count] = Payment.where(:process => 1).count
 			return redirect_to :controller => :users, :action => :index
 		end
 	end

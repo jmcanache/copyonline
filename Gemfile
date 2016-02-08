@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
-#ruby '1.9.3'
+#ruby '2.2.2'
+ruby '1.9.3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -52,6 +52,8 @@ gem 'will_paginate', '~> 3.0'
 gem "font-awesome-rails"
 
 gem 'bootstrap-combobox', '~> 1.2', '>= 1.2.6'
+
+gem 'bootstrap-will_paginate'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
