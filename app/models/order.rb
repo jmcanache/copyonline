@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   has_many :folders, dependent: :destroy
-  has_many :documents
+  has_many :documents 
   belongs_to :payment
   belongs_to :user
 

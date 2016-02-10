@@ -17,4 +17,10 @@ class UsersController < ApplicationController
 	def user_info
 		@user = User.find(params[:user_id])
 	end
+
+	def del
+		array = Payment.pluck(:id)
+		Payment.destroy(array)
+		redirect_to action: :index
+	end
 end

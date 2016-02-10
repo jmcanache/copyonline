@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-	has_many :orders
+	has_many :orders, dependent: :destroy
 	has_many :folders, through: :orders
 	belongs_to :banco
 

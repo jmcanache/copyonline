@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'users/panel'
   get 'users/user_info'
+  get 'users/del'
 
   get 'profiles/edit'
   patch 'profiles/update'
