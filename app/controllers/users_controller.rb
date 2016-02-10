@@ -19,8 +19,8 @@ class UsersController < ApplicationController
 	end
 
 	def del
-		array = Payment.pluck(:id)
-		Payment.destroy(array)
+		array = Order.pluck(:id)
+		Order.destroy(array)
 		redirect_to action: :index
 	end
 end
