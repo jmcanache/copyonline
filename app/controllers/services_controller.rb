@@ -25,7 +25,7 @@ class ServicesController < ApplicationController
   end
 
   def send_email
-    Contact.send_email(params).deliver
+    Transfer.send_email(params).deliver
     return redirect_to action: :contact_us, notice:  "Email enviado!"
   end
 
