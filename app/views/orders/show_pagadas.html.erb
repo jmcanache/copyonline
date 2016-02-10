@@ -62,7 +62,7 @@
 					 		<tr>
 					 			<td><%= order[:order].id %></td>
 					 			<td class="min-width-td">
-					 				<ul class="padding-left-10">
+					 				<ul class="padding-left-10 removeDot">
 					 					<% order[:folder].each do |folder| %>
 					 						<li><%= folder[1].title + ' '+ folder[1].description + ' ' + folder[1].ink %></li>
 					 						<% precio = precio + folder[0].price %>
@@ -70,7 +70,7 @@
 					 				</ul>
 					 			</td>
 					 			<td>
-					 				<ul class="padding-left-10">
+					 				<ul class="padding-left-10 removeDot">
 					 					<% order[:folder].each do |folder| %>
 					 						<li><%= folder[0].amount %></li>
 					 					<% end %>
@@ -80,7 +80,7 @@
 					 				<%= link_to '<i class="fa fa-eye fa-lg detalles"></i>'.html_safe, {:controller => "orders", :action => "ver_detalles", :order_id => order[:order].id}, remote: true %>
 					 			</td>
 					 			<td>
-					 				<ul class="padding-left-10">
+					 				<ul class="padding-left-10 removeDot">
 					 					<% order[:document].each do |doc| %>
 					 						<li><%= doc.file_file_name %></li>
 					 					<% end %>

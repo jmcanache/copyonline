@@ -13,4 +13,8 @@ class UsersController < ApplicationController
 			return redirect_to :controller => :users, :action => :index
 		end
 	end
+
+	def user_info
+		@user = User.find(params[:user_id])
+	end
 end

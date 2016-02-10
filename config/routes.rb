@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {sessions: "sessions", :registrations => "registrations"}
 
   get 'users/panel'
+  get 'users/user_info'
 
   get 'profiles/edit'
   patch 'profiles/update'

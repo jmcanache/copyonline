@@ -2965,8 +2965,7 @@ div.pagination{
   margin: 0px;
 }
 
-
-
+/*notificacion de nueva orden en admin*/
 a.notification:after {
   content: attr(data-count);
   font-size: 13px;
@@ -2980,4 +2979,8 @@ a.notification:after {
   position: relative;
   top: -12px;
   left: 7px;
+}
+
+.removeDot{
+  list-style-type: none;
 }

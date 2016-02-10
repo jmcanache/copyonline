@@ -31,12 +31,12 @@
 			 		<% @payment.each do |payment| %>
 			 			<tr>
 			 				<td>
-			 					<p><%= payment.orders[0].user[:nombre] %>  <%= payment.orders[0].user[:apellido] %></p>
-			 					<p><%= payment.orders[0].user[:telefono] %></p>
-			 					<p><%= payment.orders[0].user[:email] %></p>
+			 					<p> <%= link_to (payment.orders[0].user[:nombre] + ' ' + payment.orders[0].user[:apellido]), {controller: 'users', action: 'user_info', :user_id => payment.orders[0].user[:id] }, class: "detalles", remote: true %></p>
+			 					<p>Tlf: <%= payment.orders[0].user[:telefono] %></p>
+			 					<p><%= payment.orders[0].user[:jn] == 0 ? 'C.I.'.html_safe : 'J.'.html_safe %>: <%= payment.orders[0].user[:cedula] %></p>
 			 				</td>
 			 				<td>
-			 					<ul class="padding-left-10">
+			 					<ul class="padding-left-10 removeDot">
 			 						<% payment.orders.each do |order| %>
 			 							<li> <%= link_to "Ver detalles", {:controller => "payments", :action => "ver_detalles", :order_id => order[:id]}, class: "detalles", remote: true %> </li>
 			 						<% end %>
