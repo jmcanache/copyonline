@@ -70,13 +70,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
    config.action_mailer.smtp_settings = {  
-    :address              => "smtp.gmail.com",  
+    :address              => "smtp.mailgun.org",  
     :port                 => 587,  
-    :domain               => "gmail.com",  
-    :user_name            => "copyonlinetest@gmail.com",  
-    :password             => "copyonline",  
+    :domain               => "sandbox1b3a7eeb83774f8b8b0630da78c1cf79.mailgun.org",  
+    :user_name            => "postmaster@sandbox1b3a7eeb83774f8b8b0630da78c1cf79.mailgun.org",  
+    :password             => "8cddd9e9b889b17a313e90b4786eeb40",  
     :authentication       => "plain",  
-    :enable_starttls_auto => true  
+    :enable_starttls_auto => tru  
   } 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
