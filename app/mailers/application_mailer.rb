@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default :from => 'copyonline21@gmail.com'
+  default :from => 'info-copyonline@copyonline.com.ve'
   #layout 'mailer'
 end
