@@ -66,7 +66,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.default_url_options = { :host => 'http://copyonline.paradas.co'}
+  config.action_mailer.default_url_options = { :host => 'http://copyonline.com.ve'}
   config.action_mailer.delivery_method = :smtp
 
    config.action_mailer.smtp_settings = {  

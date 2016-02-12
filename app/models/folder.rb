@@ -5,7 +5,6 @@ class Folder < ActiveRecord::Base
 
   attr_accessor :amount_color, :amount_blanco_negro
 
-  validates :description, length: { maximum: 10 }
   validates :amount, :numericality => { :less_than_or_equal_to => 1000000 }
   #validates :pages, presence:true,
    #                    format: { with: /A[0-9]{1,5}( *- *[0-9]{1,5})*z/, message: "Story title is required"}

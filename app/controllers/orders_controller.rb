@@ -40,18 +40,18 @@ class OrdersController < ApplicationController
     end
 
     save_order = true
+    if(params[:order][:blanco_negro] == "1")
+      servicio = Service.where(:title => params[:order][:servicio], :description => params[:order][:hoja], :ink => 'blanco_negro').first
+      cantidad = params[:folder][:amount_blanco_negro]
+      guardar = iniciar_transaccion(servicio, save_order, cantidad)
+      save_order = false
+    end
+
     if(params[:order][:color] == "1")
       servicio = Service.where(:title => params[:order][:servicio], :description => params[:order][:hoja], :ink => 'color').first
       cantidad = params[:folder][:amount_color]
       pages = params[:folder][:pages]
       guardar = iniciar_transaccion(servicio, save_order, cantidad, pages)
-      save_order = false
-    end
-
-    if(params[:order][:blanco_negro] == "1")
-      servicio = Service.where(:title => params[:order][:servicio], :description => params[:order][:hoja], :ink => 'blanco_negro').first
-      cantidad = params[:folder][:amount_blanco_negro]
-      guardar = iniciar_transaccion(servicio, save_order, cantidad)
     end
 
     if guardar 
@@ -150,11 +150,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def iniciar_transaccion(servicio, save_order, cantidad, pages = 0)
+  def iniciar_transaccion(servicio, save_order, cantidad, pages_color = 0)
     todo_ok = true
+    logger.debug(servicio)
     Order.transaction do
       if save_order
+        logger.debug("entro")
         @orders = Order.new(:user_id => current_user.id)
+        logger.debug(@orders.inspect)
         if @orders.save 
           session[:order_id] = @orders.id
         else
@@ -162,8 +165,10 @@ class OrdersController < ApplicationController
           break
         end
       end
+      logger.debug("continua")
       precio = cantidad.to_f * servicio[:price].to_f
-      @folders = Folder.new(price: precio, order_id: session[:order_id], service_id: servicio[:id], amount: cantidad, description: params[:folder][:description], pages: pages)
+      @folders = Folder.new(price: precio, order_id: session[:order_id], service_id: servicio[:id], amount: cantidad, description: params[:folder][:description], pages: pages_color)
+      logger.debug(@folders.inspect)
       if @folders.save and todo_ok == true
         params[:document][:file].each do |doc|
           @document = Document.new(:file => doc, :folder_id => @folders.id)
@@ -172,9 +177,11 @@ class OrdersController < ApplicationController
           end
         end
       else
+        logger.debug('fallo folder')
         todo_ok = false
       end 
       if todo_ok == false
+        logger.debug('Aqui en Rollback')
         raise ActiveRecord::Rollback, "No guardo nada"
       end
     end
