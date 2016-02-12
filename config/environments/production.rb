@@ -76,7 +76,7 @@ Rails.application.configure do
     :user_name            => "postmaster@sandbox1b3a7eeb83774f8b8b0630da78c1cf79.mailgun.org",  
     :password             => "8cddd9e9b889b17a313e90b4786eeb40",  
     :authentication       => "plain",  
-    :enable_starttls_auto => tru  
+    :enable_starttls_auto => true  
   } 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
