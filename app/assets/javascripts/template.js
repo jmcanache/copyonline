@@ -204,7 +204,7 @@ $(document).ready(function(){
 	google.maps.event.addDomListener(window, 'load', init_map);
 
 	//AJAX para obtener iformacion de cantidad de envios
-	$('.EnvioDom').change(function(){
+	$( "body" ).delegate( ".EnvioDom", "change", function(){
 		var id = $(this).val();
 		var checked = $(this);
 		var currentPages = parseInt($('#sumPages').val());
@@ -276,7 +276,11 @@ setInterval(function getCountOrder(){
     	async: true,
     	cache: false,
     	success: function (d) {
-    		$('.notification').attr('data-count', d);
+    		var data = d;
+    		if (data > 0) { 
+    			$('#dropDownMenu').addClass('notification');
+    			$('.notification').attr('data-count', d);
+    		}
 	 	}
   	})
-}, 1000 * 60 * 5);
+}, 1000 * 60 * 3);
