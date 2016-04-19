@@ -1,6 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-5 col-md-offset-1 col-sm-6">
+			<%= image_tag("transferencia.resized.png", class: "img-responsive") %>
+		</div>
+		<div class="col-md-5 col-sm-6">
 			<h3>Su monto total a transferir es de: <span style="color: blue"><u><b> <%= @precio %></b></u></span></h3>
 			<%= form_tag( {controller: "orders", action: "transferencia_pagada"}, {class: "form-horizontal"}) do %>
 				<p>Luego de realizar el pago en la banca electrónica de su preferencia complete los siguientes campos:</p>
@@ -24,16 +27,42 @@
 				</div>
 			<% end %>
 		</div>
-
-	  	<div class="col-md-4 col-md-offset-1 col-sm-6 font-size-banco">
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-sm-6 font-size-banco">
 			<div class="panel panel-primary">
 			  	<div class="panel-body">
-			  		<%= image_tag("copy_banco_venezuela.png", class: "img-responsive" )%>
-				    <p><label>Cuenta:</label> 1345346538452346</p>
+			  		<%= image_tag("banco-banplus.png", class: "img-responsive", style: "height: 120px;margin-left: 20px;margin-bottom: 3px;")%>
+				    <p><label>Cuenta:</label> 0174-0116-56-1164142901</p>
+				    <p><label>Rif:</label> J-405417250</p>
 				    <p><label>Tipo de cuenta:</label> Corriente</p>
-				    <p><label>A nombre de:</label> CopyOnline21</p>
+				    <p><label>A nombre de:</label> CopyOnline21, CA</p>
 				    <p><label>Email:</label> copyonline21@gmail.com</p>
-				    <p><label>Rif:</label> 124525123453</p>
+				 </div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6 font-size-banco">
+			<div class="panel panel-primary">
+			  	<div class="panel-body">
+			  		<%= image_tag("banco-bicentenario.png", class: "img-responsive", style: "margin-left: 20px;margin-bottom: 20px;margin-top: 11px;" )%>
+				    <p><label>Cuenta:</label> 0175-0213-16-0072616168</p>
+				    <p><label>Rif:</label> J-405417250</p>
+				    <p><label>Tipo de cuenta:</label> Corriente</p>
+				    <p><label>A nombre de:</label> CopyOnline21, CA</p>
+				    <p><label>Email:</label> copyonline21@gmail.com</p>
+				 </div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-sm-6 font-size-banco">
+			<div class="panel panel-primary">
+			  	<div class="panel-body">
+			  		<%= image_tag("banco-bod.png", class: "img-responsive", style: "width: 200px;height: 100px;padding-left: 10px;margin-left: 50px;margin-bottom: 23px;" )%>
+				    <p><label>Cuenta:</label> 0116-0503-65-0024502480</p>
+				    <p><label>Rif:</label> J-405417250</p>
+				    <p><label>Tipo de cuenta:</label> Corriente</p>
+				    <p><label>A nombre de:</label> CopyOnline21, CA</p>
+				    <p><label>Email:</label> copyonline21@gmail.com</p>
 				 </div>
 			</div>
 		</div>
