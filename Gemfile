@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
-#ruby '1.9.3'
+#ruby '2.2.2'
+ruby '1.9.3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -75,7 +75,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 group :production do
-  gem 'puma', '~> 2.16'
+  gem 'puma', '~> 2.15', '>= 2.15.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
