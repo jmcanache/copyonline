@@ -22,15 +22,11 @@
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 
-global: &global
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
+default: &default
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  socket: /var/run/mysqld/mysqld.sock
-  username: root
-  #password: 'jparadasb'
-  password: '12345678'
+  timeout: 5000
 
 development:
   <<: *global
@@ -44,10 +40,4 @@ test:
   database: copy_test
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
-  host: <%= ENV['DATABASE_HOST'] %>
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  database: <%= ENV['DATABASE_NAME'] %>
+  url: <%= ENV['DATABASE_URL'] %>
