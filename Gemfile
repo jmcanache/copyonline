@@ -52,6 +52,8 @@ gem 'bootstrap-combobox', '~> 1.2', '>= 1.2.6'
 
 gem 'bootstrap-will_paginate'
 
+gem 'mysql2', '>= 0.3.13', '< 0.5'
+
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 # Use ActiveModel has_secure_password
@@ -73,7 +75,6 @@ group :development, :test do
 end
 group :production do
   gem 'puma'
-  gem 'pg'
 
 end
 

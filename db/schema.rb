@@ -79,10 +79,10 @@ ActiveRecord::Schema.define(version: 20160206225222) do
   create_table "services", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
-    t.string   "ink",         limit: 255
     t.float    "price",       limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "ink",         limit: 255
   end
 
   create_table "users", force: :cascade do |t|
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160206225222) do
     t.string   "apellido",               limit: 255
     t.string   "telefono",               limit: 255
     t.string   "cedula",                 limit: 255
+    t.string   "integer",                limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "email",                  limit: 255, default: "", null: false
