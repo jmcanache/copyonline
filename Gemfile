@@ -54,6 +54,7 @@ gem 'bootstrap-will_paginate'
 
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'pg'
+gem 'mysql'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
