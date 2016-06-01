@@ -52,7 +52,7 @@ gem 'bootstrap-combobox', '~> 1.2', '>= 1.2.6'
 
 gem 'bootstrap-will_paginate'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.4.4'
 gem 'pg'
 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
