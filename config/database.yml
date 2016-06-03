@@ -24,17 +24,16 @@
 global: &global
   adapter: mysql2
   encoding: utf8
-  reconnect: true
+  reconnect: false
   pool: 5
   socket: /var/run/mysqld/mysqld.sock
-  host: sql5.freemysqlhosting.net
-  username: sql5121835
+  username: root
   #password: 'jparadasb'
-  password: EWKpW1b98E
+  password: '12345678'
 
 development:
   <<: *global
-  database: sql5121835
+  database: copy_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
