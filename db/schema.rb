@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206225222) do
+ActiveRecord::Schema.define(version: 20160604210512) do
 
   create_table "bancos", force: :cascade do |t|
     t.string   "descripcion", limit: 255,               null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160206225222) do
     t.datetime "updated_at",                                 null: false
     t.integer  "Total_price",      limit: 4,                 null: false
     t.integer  "banco_id",         limit: 4
+    t.string   "sender",           limit: 255
   end
 
   add_index "payments", ["banco_id"], name: "index_payments_on_banco_id", using: :btree

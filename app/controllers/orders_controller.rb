@@ -98,7 +98,7 @@ class OrdersController < ApplicationController
       if session[:envio] == "1"
         precio = params[:precio].to_f + servicioEnvio[:price].to_f
       end
-      payment = Payment.new(:shipping => session[:envio], :transfer_number => params[:transfer_number], :shipping_address => session[:direccion], :Total_price => params[:precio], :banco_id => params[:banco])
+      payment = Payment.new(:shipping => session[:envio], :transfer_number => params[:transfer_number], :shipping_address => session[:direccion], :Total_price => params[:precio], :banco_id => params[:banco], :sender => params[:bancoR])
       if payment.save 
         session[:ordenes_procesadas].each do |orderID|
           search_order = Order.find(orderID)

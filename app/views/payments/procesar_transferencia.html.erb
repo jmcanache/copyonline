@@ -20,7 +20,8 @@
 			 			<th data-field="envio" data-sortable="true" data-align="center">Envio</th>
 			 			<th data-field="direccion" data-sortable="true">Dirección</th>
 			 			<th data-field="transferencia" data-sortable="true" data-align="center">Numero de transferencia</th>
-			 			<th data-field="banco" data-sortable="true" data-align="center">Banco</th>
+			 			<th data-field="bancoR" data-sortable="true" data-align="center">Banco remitente</th>
+			 			<th data-field="banco" data-sortable="true" data-align="center">Banco destinatario</th>
 			 			<th data-field="total" data-sortable="true" data-align="center">Total(Bs.F)</th>
 			 			<% if(@process == "1") %>
 			 				<th data-field="finalizar" data-sortable="true" data-align="center">Finalizar</th>
@@ -58,6 +59,9 @@
 			 				</td>
 			 				<td>
 			 					<%= payment[:transfer_number] %>
+			 				</td>
+			 				<td>
+			 					<%= payment[:sender] %>
 			 				</td>
 			 				<td>
 			 					<%= payment.banco[:descripcion] %>
