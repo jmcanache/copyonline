@@ -2279,7 +2279,7 @@ span.color-red {
   max-width: 45% !important;
 }
 .animate-in .slide-img {
-  left: 55%;
+  left: 56%;
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
@@ -2627,7 +2627,7 @@ span.color-red {
     padding-left: 10px;
   }
 }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 550px) {
   .mainmenu {
     font-size: 120%;
     border: none;
@@ -2988,4 +2988,45 @@ a.notification:after {
 .socialM:hover{
   opacity: 0.6;
   text-decoration: none;
+}
+
+@media(max-width: 860px){
+  .navbar-right a{ 
+    padding: 1.2em 0.5em !important;
+  }
+}
+
+@media(max-width: 767px){
+  .logo-wrapper{
+    text-align:center;
+    width: 45%;
+  }
+  .logo-wrapper a{
+    margin-left:inherit !important;
+  }
+  .navbar-right{
+    float: right;
+  }
+  .bigger:hover {
+    font-size: 1.2em;
+  }
+  .open .dropdown-toggle {
+    font-size: 1.2em;
+    color: #4f8db3;
+  }
+}
+
+@media(max-width: 550px){
+  .navbar-right{
+    float: inherit;
+  }
+  .logo-wrapper{
+    width: inherit;
+  }
+  .logo-wrapper a{
+    padding-right:0 !important;
+  }
+   .logo-wrapper a img{
+    width: inherit !important;
+  } 
 }

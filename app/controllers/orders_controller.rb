@@ -39,6 +39,10 @@ class OrdersController < ApplicationController
       return redirect_to :action => :new, alert: "Debe elegir que tipo de color sera el servicio"
     end
 
+    if params[:order][:color] == "1" and params[:folder][:amount_color] != params[:folder][:pages].split('-').length.to_s
+      return redirect_to :action => :new, alert: "La cantidad de páginas a color introducido no coincide con la cantidad de número (de los números de páginas)"
+    end
+
     save_order = true
     if(params[:order][:blanco_negro] == "1")
       servicio = Service.where(:title => params[:order][:servicio], :description => params[:order][:hoja], :ink => 'blanco_negro').first
@@ -75,7 +79,8 @@ class OrdersController < ApplicationController
     else
       @precio = servicioEnvio[:price]
     end
-    @bancos = Banco.all.order(descripcion: :asc)
+    @bancos_remitentes = Banco.all.order(descripcion: :asc)
+    @bancos_destinos = Banco.find([59,51,52])
     session[:ordenes_procesadas] = []
     while aux > 7
       if params["#{cont}"].present?
@@ -152,12 +157,9 @@ class OrdersController < ApplicationController
 
   def iniciar_transaccion(servicio, save_order, cantidad, pages_color = 0)
     todo_ok = true
-    logger.debug(servicio)
     Order.transaction do
       if save_order
-        logger.debug("entro")
         @orders = Order.new(:user_id => current_user.id)
-        logger.debug(@orders.inspect)
         if @orders.save 
           session[:order_id] = @orders.id
         else
@@ -165,10 +167,8 @@ class OrdersController < ApplicationController
           break
         end
       end
-      logger.debug("continua")
       precio = cantidad.to_f * servicio[:price].to_f
       @folders = Folder.new(price: precio, order_id: session[:order_id], service_id: servicio[:id], amount: cantidad, description: params[:folder][:description], pages: pages_color)
-      logger.debug(@folders.inspect)
       if @folders.save and todo_ok == true
         params[:document][:file].each do |doc|
           @document = Document.new(:file => doc, :folder_id => @folders.id)

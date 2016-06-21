@@ -1,6 +1,7 @@
 h3 Servicios
+-i = 0
 -@order.folders.each do |folder|
-	
+	-i+=1
 	p
 		b Servicio: 
 		| #{folder.service[:title]}_#{folder.service[:description]}_#{folder.service[:ink]}          
@@ -8,12 +9,15 @@ h3 Servicios
 		b Cantidad de hojas:  
 		| #{folder[:amount]}
 
-h3 Descripcións
+h3 Descripción
 div style="word-wrap: break-word;"
 	==@order.folders[0][:description]
 
 h3 Páginas a color
-</p> [ #{@order.folders[0][:pages]} ] </p>   
+-if i == 2
+	</p> [ #{@order.folders[1][:pages]} ] </p>   
+-else
+	</p> [ #{@order.folders[0][:pages]} ] </p>
 
 h3 Documentos
 ol

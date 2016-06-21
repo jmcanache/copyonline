@@ -138,18 +138,46 @@ $(document).ready(function(){
         }
 	});
 
-	//validacion del input paginas a color
-	$('#folder_pages').blur(function(){
-		numbers = $(this).val().trim();
+	//validacion de coincidencia entre input a color y numero de paginas
+	$('#folder_pages, #folder_amount_color').blur(function(){
+		var individual_pages =  $('#folder_pages').closest('label');
+		var total_pages = $('#folder_amount_color').closest('label');
+		numbers = $('#folder_pages').val().trim();
+
 		if (! isPagesNumberValid(numbers) ){
 			if(!($('#help-page').length)){
 				$('#submitOrder').attr('disabled', 'disabled');
-				$(this).closest('label').addClass('has-error').append("<span id='help-page' class='help-block'>Error de formato.</span>");
+				individual_pages.addClass('has-error').append("<span id='help-page' class='help-block'>Error de formato.</span>");
 			}
 		}else{
-			$('#submitOrder').removeAttr('disabled');
-			$(this).closest('label').removeClass('has-error');
-			$('#help-page').remove();
+			if(($('#help-page').length)){
+				$('#submitOrder').removeAttr('disabled');
+				individual_pages.removeClass('has-error');
+				$('#help-page').remove();
+			}
+
+			if($('#folder_pages').val() != "" && $('#folder_amount_color').val() != ""){
+				var pages_array = $('#folder_pages').val().split('-');
+				var clean_array = pages_array.filter(function(e){ return e.replace(/(\r\n|\n|\r)/gm,"")});
+				if($('#folder_amount_color').val() != clean_array.length.toString()){
+					individual_pages.addClass('has-error');
+					if(!($('.help-page').length)){
+						$('#submitOrder').attr('disabled', 'disabled');
+						total_pages.addClass('has-error').append("<span class='help-block help-page'>Cantidad no coincide.</span>");
+						individual_pages.append("<span class='help-block help-page'>Cantidad no coincide.</span>");
+					}
+				}else{
+					$('#submitOrder').removeAttr('disabled');
+					total_pages.removeClass('has-error');
+					individual_pages.removeClass('has-error');
+					$('.help-page').remove();
+				}
+			}else{
+				$('#submitOrder').removeAttr('disabled');
+				total_pages.removeClass('has-error');
+				individual_pages.removeClass('has-error');
+				$('.help-page').remove();
+			}
 		}
 	});
 
