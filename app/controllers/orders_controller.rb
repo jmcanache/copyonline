@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
       @precio = servicioEnvio[:price]
     end
     @bancos_remitentes = Banco.all.order(descripcion: :asc)
-    @bancos_destinos = Banco.find([59,51,52])
+    @bancos_destinos = Banco.find([13,5,6])
     session[:ordenes_procesadas] = []
     while aux > 7
       if params["#{cont}"].present?
