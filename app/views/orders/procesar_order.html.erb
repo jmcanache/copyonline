@@ -10,7 +10,7 @@
 				<div class="form-group">
 				    <label for="transferencia" class="col-sm-5 control-label">Número de transacción</label>
 				    <div class="col-sm-7">
-				    	<%= number_field_tag 'transfer_number', '', :required => :true, max: 8223372036854775807, class: "form-control" %>
+				    	<%= number_field_tag 'transfer_number', '', :required => :true,min: 1, max: 8223372036854775807, class: "form-control" %>
 				    </div>
 				</div>
 				<input type="hidden" id="precio" name="precio" value="<%=@precio%>">
