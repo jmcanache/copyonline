@@ -46,10 +46,10 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  host: sql5.freemysqlhosting.net
-  username: sql5121835
+  host: 199.26.87.231
+  username: copyonli_21
   password: EWKpW1b98E
-  database: sql5121835
+  database: copyonli_21
 
 #shrouded-savannah-65771
 #199.26.87.231
