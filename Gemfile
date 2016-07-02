@@ -74,7 +74,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 group :production do
-  gem 'puma'
+  gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 end
 
