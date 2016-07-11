@@ -47,7 +47,7 @@ production:
   encoding: utf8
   reconnect: true
   host: 199.26.87.231
-  username: copyonli_21
+  username: <%= ENV['DATABASE_USER'] %>
   password: EWKpW1b98E
   database: copyonli_21
 
