@@ -46,12 +46,11 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  host: 199.26.87.231
+  host: <%= ENV['DATABASE_HOST'] %>
   username: <%= ENV['DATABASE_USER'] %>
-  password: EWKpW1b98E
-  database: copyonli_21
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_USER'] %>
 
-#shrouded-savannah-65771
 #199.26.87.231
 #copyonli_21
 #EWKpW1b98E
