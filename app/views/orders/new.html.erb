@@ -100,7 +100,7 @@
 											  	<%= fa.number_field 'amount_color', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 120px;", oninvalid: "this.setCustomValidity('Introduzca la cantidad de páginas a Imprimir a color')", onchange: "this.setCustomValidity('')" %>
 											</label>
 											<label>
-												<span class="control-label">Páginas a color</span>
+												<span class="control-label">N° de las páginas a imprimir a color</span>
 											  	<%= fa.text_field 'pages', :required => :true, disabled: true, class: "form-control", style: "width: 120px;", placeholder: "ej: 2-3-4-5", oninvalid: "this.setCustomValidity('Introduzca el número de las páginas a imprimir a color')", onchange: "this.setCustomValidity('')" %>
 											</label>
 										</div>
@@ -170,3 +170,21 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="preorder-alert">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"> <i class="fa fa-exclamation-triangle preorder-warning" aria-hidden="true"></i> AVISO</h3>
+      </div>
+      <div class="modal-body">
+        <p id="preorder-text">Su pedido estará listo en 24 horas hábiles. Desea continuar con su pedido?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-red" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-green" data-dismiss="modal" id="preorder-ok">Aceptar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -2788,9 +2788,9 @@ span.color-red {
   border: 1px solid #3b3c41;
 }
 .btn-green {
-  border: 1px solid #4c5818;
+  border: 1px solid #467522;
   color: #FFF;
-  background: none repeat scroll 0 0 #6E8023;
+  background: none repeat scroll 0 0 #75C736;
 }
 .btn-green:hover {
   background: none repeat scroll 0 0 #3b3c41;
@@ -2801,7 +2801,7 @@ span.color-red {
 .btn-red {
   border: 1px solid #ab0d0d;
   color: #FFF;
-  background: none repeat scroll 0 0 #DA1111;
+  background: none repeat scroll 0 0 #EA2A2A;
 }
 .btn-red:hover {
   background: none repeat scroll 0 0 #3b3c41;
@@ -2981,6 +2981,10 @@ a.notification:after {
   left: 7px;
 }
 
+#preorder-text{
+  font-size: 18px;
+}
+
 .removeDot{
   list-style-type: none;
 }
@@ -2988,6 +2992,9 @@ a.notification:after {
 .socialM:hover{
   opacity: 0.6;
   text-decoration: none;
+}
+.preorder-warning{
+    color: darkorange;
 }
 
 @media(max-width: 860px){

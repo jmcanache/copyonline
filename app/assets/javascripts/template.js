@@ -40,9 +40,18 @@ $(document).ready(function(){
 	/*Fin de text area en mostrar ordenes*/
 
 	/*Bloquear UI para realizar procesos*/
-	$('#new_order').submit(function() {
-	  	$.blockUI({ message: '<i class="fa fa-spinner fa-pulse fa-2x blue" style="padding: 2%"></i> <h4>Espere mientras sus archivos se cargan.</h4>' });
+	$('#new_order').submit(function(e) {
+		e.preventDefault();
+		$('#preorder-alert').modal('show');
+	  	//$.blockUI({ message: '<i class="fa fa-spinner fa-pulse fa-2x blue" style="padding: 2%"></i> <h4>Espere mientras sus archivos se cargan.</h4>' });
+		//var confirmacion = confirm("AVISO: Su pedido estará listo en 24 horas hábiles. Desea continuar con su pedido?");
+	
 	});
+
+	$('#preorder-ok').on('click', function(){
+		$.blockUI({ message: '<i class="fa fa-spinner fa-pulse fa-2x blue" style="padding: 2%"></i> <h4>Espere mientras sus archivos se cargan.</h4>' });
+		$('#new_order').unbind('submit').submit();
+	})
 
     $('.detalles').click(function() { 
         $.blockUI({ 
