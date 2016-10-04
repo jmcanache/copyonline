@@ -2996,6 +2996,18 @@ a.notification:after {
 .preorder-warning{
     color: darkorange;
 }
+#current-price p span{
+  padding: 8px;
+  font-size: 22px;
+  color: white;
+  background-color: #209c41;
+}
+#current-price p{
+  margin: 0;
+}
+#current-price{
+  display: none;
+}
 
 @media(max-width: 860px){
   .navbar-right a{ 
@@ -3020,6 +3032,9 @@ a.notification:after {
   .open .dropdown-toggle {
     font-size: 1.2em;
     color: #4f8db3;
+  }
+  #current-price{
+    margin-top: 20px;
   }
 }
 

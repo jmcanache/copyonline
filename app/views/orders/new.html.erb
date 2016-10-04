@@ -171,6 +171,11 @@
 	</div>
 </div>
 
+<% @prices.each do |p| %>
+	<% id = p.title + '_' + p.description + '_' + p.ink %>
+	<%= hidden_field_tag  id, p.price %>
+<% end %>
+
 <div class="modal fade" tabindex="-1" role="dialog" id="preorder-alert">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -183,7 +188,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-red" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-green" data-dismiss="modal" id="preorder-ok">Aceptar</button>
+        <button type="button" class="btn btn-green" data-dismiss="modal" id="preorder-ok">Continuar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

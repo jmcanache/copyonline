@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
     @folders = Folder.new
     @documents = Document.new
     @orders = Order.new
+    @prices = Service.all
     session.delete(:order_id)
     @titulo = "Crear nueva orden"
   end

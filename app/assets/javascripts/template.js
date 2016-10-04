@@ -132,6 +132,30 @@ $(document).ready(function(){
 		$(this).is( ":checked" )? $('#folder_amount_blanco_negro').removeAttr('disabled') : $('#folder_amount_blanco_negro').attr('disabled', 'disabled');
 	});
 
+	$("input[name='order[servicio]'], input[name='order[hoja]'], #order_color, #order_blanco_negro, #folder_amount_blanco_negro, #folder_amount_color").on('change', function(){
+		var servicio = $("input[name='order[servicio]']:checked").val().toLowerCase();
+		var hoja = $("input[name='order[hoja]']:checked").val().toLowerCase();
+		var checkNegro = $('#order_blanco_negro').is(':checked');
+		var checkColor = $('#order_color').is(':checked');
+		var cantidadNegro = $('#folder_amount_blanco_negro').val();
+		var cantidadColor = $('#folder_amount_color').val();
+		var totalN = 0;
+		var totalC = 0;
+		if(checkNegro || checkColor){
+			if(checkNegro){
+				var totalN = $('#' + servicio + '_' + hoja + '_blanco_negro').val() * cantidadNegro;
+			}
+			if(checkColor){
+				var totalC = $('#' + servicio + '_' + hoja + '_color').val() * cantidadColor;	
+			}
+			var total = totalN + totalC;
+			$('#current-price').html('<p><span>Total: ' + total + 'BsF</span></p>');
+		}else{
+			$('#current-price').html('<p><span>Total: 0BsF</span></p>').fadeIn(1200);
+		}
+
+	});
+	
   	$(document).on('change', '.btn-file :file', function() {
 	  	var input = $(this),
 	    numFiles = input.get(0).files ? input.get(0).files.length : 1,
