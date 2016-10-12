@@ -132,6 +132,7 @@ $(document).ready(function(){
 		$(this).is( ":checked" )? $('#folder_amount_blanco_negro').removeAttr('disabled') : $('#folder_amount_blanco_negro').attr('disabled', 'disabled');
 	});
 
+	//Total mostrado cuando se esta creando la orden
 	$("input[name='order[servicio]'], input[name='order[hoja]'], #order_color, #order_blanco_negro, #folder_amount_blanco_negro, #folder_amount_color").on('change', function(){
 		var servicio = $("input[name='order[servicio]']:checked").val().toLowerCase();
 		var hoja = $("input[name='order[hoja]']:checked").val().toLowerCase();
@@ -150,10 +151,10 @@ $(document).ready(function(){
 			}
 			var total = totalN + totalC;
 			$('#current-price').html('<p><span>Total: ' + total + 'BsF</span></p>');
-		}else{
-			$('#current-price').html('<p><span>Total: 0BsF</span></p>').fadeIn(1200);
 		}
-
+		if(totalN!=0 || totalC!=0){
+			$('#current-price').fadeIn(1200);
+		}
 	});
 	
   	$(document).on('change', '.btn-file :file', function() {

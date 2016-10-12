@@ -93,11 +93,11 @@
 											<strong>Tipo de color</strong>
 											<label>
 												<%= f.check_box :blanco_negro %> <i></i> <span>B/N</span>
-												<%= fa.number_field 'amount_blanco_negro', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 125px;", oninvalid: "this.setCustomValidity('Introduzca la cantidad de páginas a Imprimir en B/N')", onchange: "this.setCustomValidity('')" %>
+												<%= fa.number_field 'amount_blanco_negro', :required => :true, disabled: true, max: 9999, min:0, class: "form-control", style: "width: 125px;", oninvalid: "this.setCustomValidity('Introduzca la cantidad de páginas a Imprimir en B/N')", onchange: "this.setCustomValidity('')" %>
 											</label>
 											<label>
 												<%= f.check_box :color %> <i></i> <span>Color</span>
-											  	<%= fa.number_field 'amount_color', :required => :true, disabled: true, max: 9999, class: "form-control", style: "width: 120px;", oninvalid: "this.setCustomValidity('Introduzca la cantidad de páginas a Imprimir a color')", onchange: "this.setCustomValidity('')" %>
+											  	<%= fa.number_field 'amount_color', :required => :true, disabled: true, max: 9999, min:0, class: "form-control", style: "width: 120px;", oninvalid: "this.setCustomValidity('Introduzca la cantidad de páginas a Imprimir a color')", onchange: "this.setCustomValidity('')" %>
 											</label>
 											<label>
 												<span class="control-label">N° de las páginas a imprimir a color</span>

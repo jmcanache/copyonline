@@ -3001,6 +3001,7 @@ a.notification:after {
   font-size: 22px;
   color: white;
   background-color: #209c41;
+  border-radius: 10px;
 }
 #current-price p{
   margin: 0;
@@ -3050,5 +3051,6 @@ a.notification:after {
   }
    .logo-wrapper a img{
     width: inherit !important;
+    max-width: 100%;
   } 
 }
