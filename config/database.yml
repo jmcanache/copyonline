@@ -43,7 +43,7 @@ test:
   database: copy_test
 
 production:
-  url: mysql2://copyonlie_21:EWKpW1b98E@199.26.87.231/copyonli_21
+  url: mysql2://copyonli_21:EWKpW1b98E@199.26.87.231/copyonli_21
   username: copyonli_21
   password: EWKpW1b98E
   database: copyonli_21
