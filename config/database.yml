@@ -43,10 +43,7 @@ test:
   database: copy_test
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
-  host: 199.26.87.231
+  url: mysql://copyonlie_21:EWKpW1b98E@199.26.87.231/copyonli_21
   username: copyonli_21
   password: EWKpW1b98E
   database: copyonli_21
