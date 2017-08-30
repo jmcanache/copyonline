@@ -43,16 +43,30 @@ test:
   database: copy_test
 
 production:
-  url: mysql2://copyonli_21:EWKpW1b98E@199.26.87.231/copyonli_21
+  url: mysql2://copyonli_21:EWKpW1b98E@64.62.211.131/copyonli_21
   username: copyonli_21
   password: EWKpW1b98E
   database: copyonli_21
 
-#199.26.87.231
+#199.26.87.231 
 #copyonli_21
 #EWKpW1b98E
+
+  # host: 199.26.87.231
+  # adapter: mysql2
+  # port: 3306
+  # username: copyonli_21
+  # password: 'EWKpW1b98E'
+  # database: copyonli_21
 
 #host: <%= ENV['DATABASE_HOST'] %>
 #username: <%= ENV['DATABASE_USER'] %>
 #password: <%= ENV['DATABASE_PASSWORD'] %>
 #database: <%= ENV['DATABASE_USER'] %>
+
+# heliohost
+# host: 64.62.211.131
+# adapter: mysql2
+# port: 3306
+# username: copyonli_21
+# password: 'EWKpW1b98E'
